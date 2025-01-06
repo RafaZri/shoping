@@ -1,0 +1,71 @@
+.main {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f7f7f8;
+}
+
+/* Left Container: Empty for now */
+.leftContainer {
+  flex: 1;
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+}
+
+/* Middle Container: Search Bar, AI Answers, and Products */
+.middleContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 0 1rem;
+}
+
+/* Products Column */
+.productsColumn {
+  flex: 1;
+  overflow-y: auto; /* Enable scrolling */
+  padding-top: 100px; /* Add padding to account for the search bar's height */
+}
+
+/* User Message Styling */
+.userMessage {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.userBubble {
+  background-color: #0070f3;
+  color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+/* AI Message Styling */
+.aiMessageBlock {
+  margin-bottom: 1.5rem;
+}
+
+.aiMessageBlock .aiResponse {
+  margin-bottom: 1.5rem;
+}
+
+/* Loader */
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+
+/* Right Container: Chat Section */
+.rightContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-left: 1px solid #e0e0e0;
+}

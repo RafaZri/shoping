@@ -1,0 +1,200 @@
+.chatSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 100vh; /* Full height */
+}
+
+/* Top Half: Product Image, Name, and Price Comparison */
+.topHalf {
+  flex: 1; /* Take up half the height */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+}
+
+/* Product Header (Image, Name, Price, and Company) */
+.productHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.productImage {
+  width: 200px; /* Larger image */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer; /* Indicate clickable */
+  transition: opacity 0.3s;
+}
+.productImage:hover {
+  opacity: 0.8; /* Add hover effect */
+}
+
+.productName {
+  font-size: 1rem; /* Smaller font size */
+  color: #333;
+  margin: 0;
+  font-weight: normal; /* Not bold */
+  font-family: inherit; /* Use the same font as the product grid */
+  cursor: pointer; /* Indicate clickable */
+  transition: color 0.3s;
+  text-decoration: none; /* Remove underline if present */
+  border-bottom: none; /* Remove the line below the product name */
+}
+
+.productName:hover {
+  color: #0070f3; /* Add hover effect */
+}
+
+
+.productDetails {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.productPrice {
+  font-weight: bold;
+  color: #0070f3; /* Blue color for price */
+}
+
+.productCompany {
+  margin-left: 0.5rem;
+  color: #333;
+}
+
+/* Price Comparison Table */
+.priceComparison {
+  width: 100%; /* Full width */
+  margin-top: 1rem;
+  overflow-y: auto; /* Enable scrolling for the schedule */
+  max-height: 200px; /* Fixed height for the schedule */
+}
+
+.priceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.priceTable th,
+.priceTable td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.priceTable th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.priceTable td {
+  font-size: 0.9rem;
+}
+
+.providerLogo {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.noComparison {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Bottom Half: Chat Messages and Input */
+.bottomHalf {
+  flex: 1; /* Take up half the height */
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Enable scrolling for chat messages */
+}
+
+.chatMessages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto; /* Enable scrolling for chat messages */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align messages to the right */
+}
+
+.userMessage {
+  background-color: #0070f3; /* Blue background */
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  max-width: 70%; /* Limit the width of the message bubble */
+  align-self: flex-end; /* Align to the right */
+}
+
+.assistantMessage {
+  background-color: #fff;
+  color: #333;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  max-width: 70%; /* Limit the width of the message bubble */
+  border: 1px solid #e0e0e0;
+  align-self: flex-start; /* Align to the left */
+}
+
+.chatInputContainer {
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.chatInput {
+  width: 100%;
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.chatInput:focus {
+  border-color: #0070f3;
+}
+
+.submitButton {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submitButton svg {
+  width: 20px;
+  height: 20px;
+  fill: #0070f3;
+  transition: fill 0.3s;
+}
+
+.submitButton:hover svg {
+  fill: #0051b3;
+}
