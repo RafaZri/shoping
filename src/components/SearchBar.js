@@ -15,6 +15,7 @@
  */
 import { useState } from 'react'; // Import React hooks for state management
 import styles from './SearchBar.module.css'; // Import CSS module for component-specific styling
+import { FaSearch } from 'react-icons/fa';
 
 export default function SearchBar({ onSearch, isLoading = false }) {
   // State for managing the search query
@@ -52,7 +53,7 @@ export default function SearchBar({ onSearch, isLoading = false }) {
 
       {/* Submit Button */}
       <button type="submit" className={styles.button} disabled={isLoading}>
-        {isLoading ? <div className={styles.spinner}></div> : 'Search'} 
+        {isLoading ? <div className={styles.spinner}></div> :'Search'} 
       </button>
     </form>
   );

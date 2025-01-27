@@ -3,8 +3,7 @@
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border: 1px  #e0e0e0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   height: 100vh; /* Full height */
@@ -16,7 +15,7 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px  #f7f6f6;
   overflow-y: auto; /* Enable scrolling if content exceeds height */
 }
 
@@ -161,7 +160,6 @@
 }
 
 .chatInput {
-  width: 100%;
   padding: 0.75rem 3rem 0.75rem 1rem;
   font-size: 1rem;
   border: 1px solid #e0e0e0;
@@ -198,3 +196,45 @@
 .submitButton:hover svg {
   fill: #0051b3;
 }
+/*********/
+.chatSection {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.sidebarClosed {
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebarOpen {
+  width: 400px;
+}
+
+.toggleButton {
+  position: absolute;
+  top: 18px;
+  left: 96%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+ 
+}
+.toggleButton:hover{
+  padding: 6px;
+  background-color: rgba(59, 121, 246, 0.15);
+  border: 1px solid rgba(3, 3, 3, 0.25);
+  border-radius: 8px;
+}
+.toggleButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.productHeader,
+.priceComparison {
+  padding: 26px;
+}
+

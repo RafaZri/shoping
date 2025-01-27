@@ -1,0 +1,983 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/SearchBar.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.SearchBar_searchBar__NLvg1 {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 49%;
+  /*max-width: 600px;*/
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: white;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.SearchBar_input__KHKv1 {
+  flex: 1 1;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border: 2px solid rgba(59, 121, 246, 0.25);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.SearchBar_input__KHKv1:focus {
+  border-color: #0a0b0b;
+}
+
+/* .button {
+  padding: 0.75rem 2rem;
+  background: #d2e7fc;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:  0.3s ease;
+}
+
+.button:hover {
+  background: #0051b3;
+}
+
+.button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+} */
+
+.SearchBar_button__h69vA {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgba(59, 121, 246, 0.15);
+  border-color: rgba(59, 121, 246, 0.25);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.SearchBar_button__h69vA:hover {
+  background-color: rgba(0, 84, 253, 0.15);
+  border-color:   #0a0b0b;
+  ;
+}
+
+.SearchBar_spinner__j3OSy {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #0070f3;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: SearchBar_spin__bMReN 1s linear infinite;
+}
+
+@keyframes SearchBar_spin__bMReN {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.SearchBar_loading__vPwJP .SearchBar_input__KHKv1 {
+  border-color: #0070f3;
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/HomePage.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************/
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  text-align: center;
+  width: 100%;
+}
+
+.container {
+  margin: auto;
+  background-color: #1a1c22;
+  border-radius: 0.6rem;
+  padding: 80px;
+  color: white;
+}
+
+.header {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid rgba(59, 121, 246, 0.25);
+  border-radius: 5px 0 0 5px;
+  width: 300px;
+}
+.input:focus {
+  border-color: #0a0b0b;
+}
+
+
+button {
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  background-color: rgba(59, 121, 246, 0.15);
+  border-color: rgba(59, 121, 246, 0.25);
+
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d9363e;
+  color: white;
+  border-color: 2px solid #0a0b0b;
+}
+
+.note {
+  font-size: 0.8em;
+  margin-bottom: 40px;
+  color: #777;
+}
+
+.note a {
+  color: #ff4d4f;
+  text-decoration: none;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.feature {
+  width: 150px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.feature img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.feature p {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #333;
+}
+
+/*!********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/AIResponse.module.css ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************/
+.AIResponse_aiResponse__uq1Oo {
+  background: #ffffff;
+  border-radius: 3px;
+  padding: 2rem;
+  border: 1px  #ffffff;
+  border-bottom:0.5px solid #dcdcdc;
+  max-width: 800px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.AIResponse_answer__qrJ_O {
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: #333;
+  font-size: 1rem;
+}
+
+.AIResponse_answer__qrJ_O strong {
+  color: #474747;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ProductGrid.module.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/* ============= GRID CONTAINER ============= */
+.ProductGrid_productsGrid__O0VA9 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 1.5rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 3px;
+  /*border: 1px solid #e0e0e0;*/
+  /*box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);*/
+  max-width: 800px;
+  margin: 1rem auto;
+}
+
+/* ============= PRODUCT CARD ============= */
+.ProductGrid_productCard__yFmJP {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  /*border: 1px solid #e0e0e0;*/
+  border-radius: 2px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ProductGrid_productCard__yFmJP:hover {
+  transform: translateY(-1px);
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+ /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);*/
+}
+
+/* ============= IMAGE AREA ============= */
+.ProductGrid_imageContainer__J2qZU {
+  width: 100%;
+  height: 180px;
+  /*padding-top: 50px;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+.ProductGrid_productImage__vA4fy {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Smaller images for Amazon products */
+.ProductGrid_amazonImage__1Axqk {
+  
+  max-width: 80%; /* Reduce the size of Amazon images */
+  max-height: 80%; /* Reduce the size of Amazon images */
+}
+
+/* Custom styles for Nike images */
+.ProductGrid_nikeImage__Nqu4Y {
+  width: 140%; /* Enlarge the image beyond the container */
+  position: relative; /* Allow positioning adjustments */
+  left: 50%; /* Shift the image to the right by 50% of its container */
+  transform: translateX(-50%); /* Center the image horizontally */
+  object-fit: cover; 
+}
+
+/* ============= TEXT AREA ============= */
+.ProductGrid_cardBody___W3l0 {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+}
+
+.ProductGrid_productTitle__IYJFS {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+
+  /* Optional: clamp to 2 lines, so very long titles don’t break the layout */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============= PRICE ============= */
+.ProductGrid_priceContainer__MQkSL {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 0.5rem; /* Optional: add some spacing */
+}
+
+.ProductGrid_currentPrice__Y44YZ {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.ProductGrid_oldPrice__bsdK1 {
+  font-size: 0.9rem;
+  color: #999;
+  text-decoration: line-through;
+}
+
+/* ============= LOGO AND ICON CONTAINER ============= */
+.ProductGrid_logoIconContainer__8jdRa {
+  display: flex;
+  justify-content: space-between; /* Logo on the left, icon on the right */
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.ProductGrid_logoContainer__nCykI {
+  display: flex;
+  align-items: center;
+}
+
+.ProductGrid_logo___lBZJ {
+  max-width: 50px;
+  max-height: 20px;
+  object-fit: contain;
+}
+
+/* ============= INFO ICON ============= */
+.ProductGrid_iconContainer__9gr9z {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.ProductGrid_iconContainer__9gr9z svg {
+  width: 20px;
+  height: 20px;
+  fill: #0070f3; /* Blue color for the info icon */
+  transition: fill 0.3s;
+}
+
+.ProductGrid_iconContainer__9gr9z:hover svg {
+  fill: #0051b3; /* Darker blue on hover */
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/components/ChatSection.module.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+.ChatSection_chatSection__AK8Zv {
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px  #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  height: 100vh; /* Full height */
+}
+
+/* Top Half: Product Image, Name, and Price Comparison */
+.ChatSection_topHalf__9juMj {
+  flex: 1 1; /* Take up half the height */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-bottom: 1px  #f7f6f6;
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+}
+
+/* Product Header (Image, Name, Price, and Company) */
+.ChatSection_productHeader__bG5_F {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.ChatSection_productImage__EtaWs {
+  width: 200px; /* Larger image */
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer; /* Indicate clickable */
+  transition: opacity 0.3s;
+}
+.ChatSection_productImage__EtaWs:hover {
+  opacity: 0.8; /* Add hover effect */
+}
+
+.ChatSection_productName__3ge8C {
+  font-size: 1rem; /* Smaller font size */
+  color: #333;
+  margin: 0;
+  font-weight: normal; /* Not bold */
+  font-family: inherit; /* Use the same font as the product grid */
+  cursor: pointer; /* Indicate clickable */
+  transition: color 0.3s;
+  text-decoration: none; /* Remove underline if present */
+  border-bottom: none; /* Remove the line below the product name */
+}
+
+.ChatSection_productName__3ge8C:hover {
+  color: #0070f3; /* Add hover effect */
+}
+
+
+.ChatSection_productDetails__4n5KA {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.ChatSection_productPrice__IQmcY {
+  font-weight: bold;
+  color: #0070f3; /* Blue color for price */
+}
+
+.ChatSection_productCompany__BR1aJ {
+  margin-left: 0.5rem;
+  color: #333;
+}
+
+/* Price Comparison Table */
+.ChatSection_priceComparison__8wvFp {
+  width: 100%; /* Full width */
+  margin-top: 1rem;
+  overflow-y: auto; /* Enable scrolling for the schedule */
+  max-height: 200px; /* Fixed height for the schedule */
+}
+
+.ChatSection_priceTable__l5bCJ {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ChatSection_priceTable__l5bCJ th,
+.ChatSection_priceTable__l5bCJ td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.ChatSection_priceTable__l5bCJ th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+.ChatSection_priceTable__l5bCJ td {
+  font-size: 0.9rem;
+}
+
+.ChatSection_providerLogo__FXvub {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.ChatSection_noComparison__78DtS {
+  font-size: 0.9rem;
+  color: #666;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* Bottom Half: Chat Messages and Input */
+.ChatSection_bottomHalf__VGban {
+  flex: 1 1; /* Take up half the height */
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  overflow-y: auto; /* Enable scrolling for chat messages */
+}
+
+.ChatSection_chatMessages__YZMb4 {
+  flex: 1 1;
+  padding: 1rem;
+  overflow-y: auto; /* Enable scrolling for chat messages */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align messages to the right */
+}
+
+.ChatSection_userMessage__fr1D4 {
+  background-color: #0070f3; /* Blue background */
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  max-width: 70%; /* Limit the width of the message bubble */
+  align-self: flex-end; /* Align to the right */
+}
+
+.ChatSection_assistantMessage__9glOD {
+  background-color: #fff;
+  color: #333;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  max-width: 70%; /* Limit the width of the message bubble */
+  border: 1px solid #e0e0e0;
+  align-self: flex-start; /* Align to the left */
+}
+
+.ChatSection_chatInputContainer__Z2WQc {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  background-color: #fff;
+  padding: 1rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.ChatSection_chatInput__PImpc {
+  padding: 0.75rem 3rem 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.ChatSection_chatInput__PImpc:focus {
+  border-color: #0070f3;
+}
+
+.ChatSection_submitButton__1ufmG {
+  position: absolute;
+  top: 50%;
+  right: 1.5rem;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ChatSection_submitButton__1ufmG svg {
+  width: 20px;
+  height: 20px;
+  fill: #0070f3;
+  transition: fill 0.3s;
+}
+
+.ChatSection_submitButton__1ufmG:hover svg {
+  fill: #0051b3;
+}
+/*********/
+.ChatSection_chatSection__AK8Zv {
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.ChatSection_sidebarClosed___P9D3 {
+  width: 0;
+  overflow: hidden;
+}
+
+.ChatSection_sidebarOpen__Gu3sC {
+  width: 400px;
+}
+
+.ChatSection_toggleButton__u_dGs {
+  position: absolute;
+  top: 18px;
+  left: 96%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+ 
+}
+.ChatSection_toggleButton__u_dGs:hover{
+  padding: 6px;
+  background-color: rgba(59, 121, 246, 0.15);
+  border: 1px solid rgba(3, 3, 3, 0.25);
+  border-radius: 8px;
+}
+.ChatSection_toggleButton__u_dGs svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ChatSection_productHeader__bG5_F,
+.ChatSection_priceComparison__8wvFp {
+  padding: 26px;
+}
+
+
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[7].use[3]!./src/app/page.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+
+
+.page_main__GlU4n {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* Left Container: Empty for now */
+/* .leftContainer {
+  flex: 1;
+  border-right: 1px solid #e0e0e0;
+} */
+
+/* Middle Container: Search Bar, AI Answers, and Products */
+.page_middleContainer__s6xut {
+  flex: 2 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  
+}
+
+/* Products Column */
+.page_productsColumn__xCurN {
+  flex: 1 1;
+  overflow-y: scroll; /* Permet le défilement vertical */
+  scrollbar-width: none; /* Masque la barre pour Firefox */
+  -ms-overflow-style: none; /* Enable scrolling */
+  padding-top: 100px; /* Add padding to account for the search bar's height */
+}
+
+/* User Message Styling */
+.page_userMessage__GHiXg {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.page_userBubble__zi1ka {
+  
+  background-color: rgba(59, 121, 246, 0.15);
+  border-color: rgba(59, 121, 246, 0.25);
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 78%;
+  word-wrap: break-word;
+}
+
+/* AI Message Styling */
+.page_aiMessageBlock__bKUEJ {
+  margin-bottom: 1.5rem;
+}
+
+.page_aiMessageBlock__bKUEJ .page_aiResponse__Seke4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Loader */
+.page_loading__Q7rym {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+}
+
+/* Right Container: Chat Section */
+.page_rightContainer__43krT {
+  /* flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-left: 1px solid #e0e0e0; */
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./globals.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************/
+* {
+  padding: 0;
+  margin: 0;
+}
+/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/RightSidebar.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************/
+:root {
+  /*colors*/
+  --body-color: #e4e9f7;
+  --sidebar-color: #fff;
+  --primary-color: #695cfe;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+
+  /*transition*/
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+body {
+  height: 100vh;
+  background: var(--body-color);
+  transition: var(--tran-05);
+}
+body.dark{
+   /*colors*/
+   --body-color: #18191A;
+   --sidebar-color: #242526;
+   --primary-color: #3A3B3C;
+   --primary-color-light: #3A3B3C;
+   --toggle-color: #FFF;
+   --text-color: #CCC;
+}
+
+/*Sidebar*/
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  padding: 10px 14px;
+  background: var(--sidebar-color);
+  transition: var(--tran-05);
+  z-index: 100;
+}
+
+.sidebar.close{
+  width: 88px;
+}
+/*Resuable css*/
+.sidebar .text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--tran-03);
+  white-space: nowrap;
+  opacity: 1;
+}
+
+.sidebar.close .text{
+  opacity: 0;
+}
+
+.sidebar .image {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar li {
+  height: 50px;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar li .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  font-size: 20px;
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+  color: var(--text-color);
+  transition: var(--tran-02);
+}
+
+.sidebar header {
+  position: relative;
+}
+
+.sidebar .image-text h1 {
+  width: 40px;
+  border-radius: 6px;
+}
+
+.sidebar header .image-text {
+  display: flex;
+  align-items: center;
+}
+
+header .image-text .header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-text .name {
+  font-weight: 600;
+}
+
+.header-text .profession {
+  margin-top: -2px;
+}
+
+.sidebar header .toggle {
+  position: absolute;
+  top: 50%;
+  right: -25px;
+  transform: translateY(-50%) rotate(180deg);
+  height: 25px;
+  width: 25px;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--sidebar-color);
+  font-size: 19px;
+  transition: var(--tran-03);
+}
+
+.sidebar.close header .toggle{
+  transform: translateY(-50%);
+}
+
+body.dark .sidebar header .toggle{
+  color: var(--text-color);
+}
+.sidebar .search-box {
+  background: var(--primary-color-light);
+  border-radius: 6px;
+  transition: var(--tran-05);
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  background: var(--primary-color-light);
+  border-radius: 6px;
+  transition: var(--tran-05);
+}
+
+.sidebar li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: var(--tran-04);
+}
+
+.sidebar li a:hover {
+  background: var(--primary-color);
+}
+
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+  color: var(--sidebar-color); 
+}
+
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text {
+  color: var(--text-color);
+}
+
+.sidebar .menu-bar {
+  height: calc(100% - 50px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.menu-bar .mode {
+  position: relative;
+  background: var(--primary-color-light);
+}
+
+.menu-bar .mode .moon-sun {
+  height: 50px;
+  width: 55px;
+  display: flex;
+  align-items: center;
+}
+.menu-bar .mode i {
+  position: absolute;
+  transition: var(--tran-03);
+}
+.menu-bar .mode i.sun {
+  opacity: 1;
+}
+
+.body.dark .menu-bar .mode i.sun{
+  opacity: 1;
+}
+body.dark .menu-bar .mode i.moon{
+  opacity: 0;
+}
+
+.menu-bar .mode .toggle-switch {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-width: 60px;
+  cursor: pointer;
+  border-radius: 6px;
+  background: var(--primary-color-light);
+  transition: var(--tran-05);
+}
+.toggle-switch .switch {
+  position: relative;
+  height: 22px;
+  width: 44px;
+  border-radius: 25px;
+  background: var(--toggle-color);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  top: 15%;
+  left: 10px;
+  transform: translate(-50%);
+  background: var(--sidebar-color);
+  transition: var(--tran-03);
+}
+
+body.dark .switch::before{
+  left: 34px;
+}
+
+.home{
+  position: relative;
+  height: 100vh;
+  left: 250px;
+  width: calc(100% - 250px);
+  background: var(--body-color);
+  transition: var(--tran-05);
+}
+
+.home .text{
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 8px 40px;
+}
+
+.sidebar.close ~ .home{
+  left: 88px;
+  width: calc(100% - 88px);
+}
+/* ... code existant ... */
+
+.right-sidebar {
+  right: 0;
+  left: auto; /* Pour s'assurer qu'il est aligné à droite */
+}
+
+.right-sidebar.close {
+  width: 88px; /* Largeur de la barre fermée */
+}
+
+/* Ajustez les styles pour les éléments de la barre de droite si nécessaire */

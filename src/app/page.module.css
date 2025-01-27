@@ -1,17 +1,19 @@
+
+
 .main {
   display: flex;
   height: 100vh;
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #f7f7f8;
+  padding: 0;
+  background-color: #fff;
 }
 
 /* Left Container: Empty for now */
-.leftContainer {
+/* .leftContainer {
   flex: 1;
-  background-color: #fff;
   border-right: 1px solid #e0e0e0;
-}
+} */
 
 /* Middle Container: Search Bar, AI Answers, and Products */
 .middleContainer {
@@ -19,13 +21,15 @@
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  margin: 0 1rem;
+  
 }
 
 /* Products Column */
 .productsColumn {
   flex: 1;
-  overflow-y: auto; /* Enable scrolling */
+  overflow-y: scroll; /* Permet le défilement vertical */
+  scrollbar-width: none; /* Masque la barre pour Firefox */
+  -ms-overflow-style: none; /* Enable scrolling */
   padding-top: 100px; /* Add padding to account for the search bar's height */
 }
 
@@ -37,11 +41,12 @@
 }
 
 .userBubble {
-  background-color: #0070f3;
-  color: #fff;
+  
+  background-color: rgba(59, 121, 246, 0.15);
+  border-color: rgba(59, 121, 246, 0.25);
   padding: 1rem;
   border-radius: 8px;
-  max-width: 70%;
+  max-width: 78%;
   word-wrap: break-word;
 }
 
@@ -63,9 +68,9 @@
 
 /* Right Container: Chat Section */
 .rightContainer {
-  flex: 1;
+  /* flex: 1;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  border-left: 1px solid #e0e0e0;
+  border-left: 1px solid #e0e0e0; */
 }

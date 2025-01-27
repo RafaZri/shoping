@@ -40,8 +40,13 @@ const ProductsGrid = ({ products, onProductSelect }) => {
     return ''; // Return an empty string if the company is not recognized
   };
 
+  // Function: Hide the scroll bar but keep the page scrollable
+  const hideScrollBar = () => {
+    document.body.style.overflow = 'hidden';
+  };
+
   return (
-    <div className={styles.productsGrid}>
+    <div className={styles.productsGrid} onMouseEnter={hideScrollBar} onMouseLeave={() => document.body.style.overflow = 'auto'}>
       {/* Map through the products array and render a card for each product */}
       {products.map((item) => (
         <div key={item.id} className={styles.productCard}>
@@ -100,3 +105,4 @@ const ProductsGrid = ({ products, onProductSelect }) => {
 };
 
 export default ProductsGrid; // Export the component for use in other parts of the app
+
