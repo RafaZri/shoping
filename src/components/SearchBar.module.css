@@ -13,6 +13,16 @@
   z-index: 1000;
 }
 
+.searchBar.homePageVariant {
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem auto;
+  z-index: auto;
+  background-color: transparent;
+}
+
 .input {
   flex: 1;
   padding: 0.75rem 1rem;
@@ -23,28 +33,13 @@
   transition: border-color 0.3s ease;
 }
 
+.loading .input {
+  border-color: rgba(59, 121, 246, 0.25);
+}
+
 .input:focus {
   border-color: #0a0b0b;
 }
-
-/* .button {
-  padding: 0.75rem 2rem;
-  background: #d2e7fc;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition:  0.3s ease;
-}
-
-.button:hover {
-  background: #0051b3;
-}
-
-.button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-} */
 
 .button {
   border-radius: 8px;
@@ -70,7 +65,7 @@
 
 .spinner {
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #0070f3;
+  border-top: 2px solid #0a0b0b;;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -80,8 +75,4 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.loading .input {
-  border-color: #0070f3;
 }

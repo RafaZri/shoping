@@ -16,6 +16,16 @@
   z-index: 1000;
 }
 
+.SearchBar_searchBar__NLvg1.SearchBar_homePageVariant__8h1nt {
+  position: static;
+  transform: none;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem auto;
+  z-index: auto;
+  background-color: transparent;
+}
+
 .SearchBar_input__KHKv1 {
   flex: 1 1;
   padding: 0.75rem 1rem;
@@ -26,28 +36,13 @@
   transition: border-color 0.3s ease;
 }
 
+.SearchBar_loading__vPwJP .SearchBar_input__KHKv1 {
+  border-color: rgba(59, 121, 246, 0.25);
+}
+
 .SearchBar_input__KHKv1:focus {
   border-color: #0a0b0b;
 }
-
-/* .button {
-  padding: 0.75rem 2rem;
-  background: #d2e7fc;
-  color: white;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition:  0.3s ease;
-}
-
-.button:hover {
-  background: #0051b3;
-}
-
-.button:disabled {
-  background: #ccc;
-  cursor: not-allowed;
-} */
 
 .SearchBar_button__h69vA {
   border-radius: 8px;
@@ -73,7 +68,7 @@
 
 .SearchBar_spinner__j3OSy {
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #0070f3;
+  border-top: 2px solid #0a0b0b;;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -85,9 +80,6 @@
   100% { transform: rotate(360deg); }
 }
 
-.SearchBar_loading__vPwJP .SearchBar_input__KHKv1 {
-  border-color: #0070f3;
-}
 /*!*************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/HomePage.css ***!
   \*************************************************************************************************************************************************************************************************************************************************************************/
@@ -103,7 +95,7 @@ body {
   margin: auto;
   background-color: #1a1c22;
   border-radius: 0.6rem;
-  padding: 80px;
+  padding: 300px 500px;
   color: white;
 }
 
@@ -685,299 +677,3 @@ button:hover {
   background-color: #fff;
   border-left: 1px solid #e0e0e0; */
 }
-/*!*********************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./globals.css ***!
-  \*********************************************************************************************************************************************************************************************************************************************************/
-* {
-  padding: 0;
-  margin: 0;
-}
-/*!*****************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/components/RightSidebar.css ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************/
-:root {
-  /*colors*/
-  --body-color: #e4e9f7;
-  --sidebar-color: #fff;
-  --primary-color: #695cfe;
-  --primary-color-light: #f6f5ff;
-  --toggle-color: #ddd;
-  --text-color: #707070;
-
-  /*transition*/
-  --tran-02: all 0.2s ease;
-  --tran-03: all 0.3s ease;
-  --tran-04: all 0.4s ease;
-  --tran-05: all 0.5s ease;
-}
-
-body {
-  height: 100vh;
-  background: var(--body-color);
-  transition: var(--tran-05);
-}
-body.dark{
-   /*colors*/
-   --body-color: #18191A;
-   --sidebar-color: #242526;
-   --primary-color: #3A3B3C;
-   --primary-color-light: #3A3B3C;
-   --toggle-color: #FFF;
-   --text-color: #CCC;
-}
-
-/*Sidebar*/
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 250px;
-  padding: 10px 14px;
-  background: var(--sidebar-color);
-  transition: var(--tran-05);
-  z-index: 100;
-}
-
-.sidebar.close{
-  width: 88px;
-}
-/*Resuable css*/
-.sidebar .text {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--text-color);
-  transition: var(--tran-03);
-  white-space: nowrap;
-  opacity: 1;
-}
-
-.sidebar.close .text{
-  opacity: 0;
-}
-
-.sidebar .image {
-  min-width: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sidebar li {
-  height: 50px;
-  margin-top: 10px;
-  list-style: none;
-  display: flex;
-  align-items: center;
-}
-
-.sidebar li .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 60px;
-  font-size: 20px;
-}
-
-.sidebar li .icon,
-.sidebar li .text {
-  color: var(--text-color);
-  transition: var(--tran-02);
-}
-
-.sidebar header {
-  position: relative;
-}
-
-.sidebar .image-text h1 {
-  width: 40px;
-  border-radius: 6px;
-}
-
-.sidebar header .image-text {
-  display: flex;
-  align-items: center;
-}
-
-header .image-text .header-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.header-text .name {
-  font-weight: 600;
-}
-
-.header-text .profession {
-  margin-top: -2px;
-}
-
-.sidebar header .toggle {
-  position: absolute;
-  top: 50%;
-  right: -25px;
-  transform: translateY(-50%) rotate(180deg);
-  height: 25px;
-  width: 25px;
-  background: var(--primary-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: var(--sidebar-color);
-  font-size: 19px;
-  transition: var(--tran-03);
-}
-
-.sidebar.close header .toggle{
-  transform: translateY(-50%);
-}
-
-body.dark .sidebar header .toggle{
-  color: var(--text-color);
-}
-.sidebar .search-box {
-  background: var(--primary-color-light);
-  border-radius: 6px;
-  transition: var(--tran-05);
-}
-
-.search-box input {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 500;
-  background: var(--primary-color-light);
-  border-radius: 6px;
-  transition: var(--tran-05);
-}
-
-.sidebar li a {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: var(--tran-04);
-}
-
-.sidebar li a:hover {
-  background: var(--primary-color);
-}
-
-.sidebar li a:hover .icon,
-.sidebar li a:hover .text {
-  color: var(--sidebar-color); 
-}
-
-body.dark .sidebar li a:hover .icon,
-body.dark .sidebar li a:hover .text {
-  color: var(--text-color);
-}
-
-.sidebar .menu-bar {
-  height: calc(100% - 50px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.menu-bar .mode {
-  position: relative;
-  background: var(--primary-color-light);
-}
-
-.menu-bar .mode .moon-sun {
-  height: 50px;
-  width: 55px;
-  display: flex;
-  align-items: center;
-}
-.menu-bar .mode i {
-  position: absolute;
-  transition: var(--tran-03);
-}
-.menu-bar .mode i.sun {
-  opacity: 1;
-}
-
-.body.dark .menu-bar .mode i.sun{
-  opacity: 1;
-}
-body.dark .menu-bar .mode i.moon{
-  opacity: 0;
-}
-
-.menu-bar .mode .toggle-switch {
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  min-width: 60px;
-  cursor: pointer;
-  border-radius: 6px;
-  background: var(--primary-color-light);
-  transition: var(--tran-05);
-}
-.toggle-switch .switch {
-  position: relative;
-  height: 22px;
-  width: 44px;
-  border-radius: 25px;
-  background: var(--toggle-color);
-}
-
-.switch::before {
-  content: "";
-  position: absolute;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  top: 15%;
-  left: 10px;
-  transform: translate(-50%);
-  background: var(--sidebar-color);
-  transition: var(--tran-03);
-}
-
-body.dark .switch::before{
-  left: 34px;
-}
-
-.home{
-  position: relative;
-  height: 100vh;
-  left: 250px;
-  width: calc(100% - 250px);
-  background: var(--body-color);
-  transition: var(--tran-05);
-}
-
-.home .text{
-  font-size: 30px;
-  font-weight: 500;
-  color: var(--text-color);
-  padding: 8px 40px;
-}
-
-.sidebar.close ~ .home{
-  left: 88px;
-  width: calc(100% - 88px);
-}
-/* ... code existant ... */
-
-.right-sidebar {
-  right: 0;
-  left: auto; /* Pour s'assurer qu'il est aligné à droite */
-}
-
-.right-sidebar.close {
-  width: 88px; /* Largeur de la barre fermée */
-}
-
-/* Ajustez les styles pour les éléments de la barre de droite si nécessaire */
