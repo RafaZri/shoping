@@ -4,7 +4,6 @@
   left: 50%;
   transform: translateX(-50%);
   width: 49%;
-  /*max-width: 600px;*/
   display: flex;
   gap: 1rem;
   padding: 0.5rem 1rem;

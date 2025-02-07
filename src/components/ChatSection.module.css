@@ -117,7 +117,8 @@
   flex: 1; /* Take up half the height */
   display: flex;
   flex-direction: column;
-  background-color: #f9f9f9;
+  background-color: #fff;
+  border-top:1px solid rgba(59, 121, 246, 0.25);
   overflow-y: auto; /* Enable scrolling for chat messages */
 }
 
@@ -131,8 +132,8 @@
 }
 
 .userMessage {
-  background-color: #0070f3; /* Blue background */
-  color: #fff;
+  background-color: rgba(12, 205, 31, 0.15); /* Blue background */
+  color: #363636;
   padding: 0.75rem;
   border-radius: 8px;
   margin-bottom: 0.5rem;
@@ -153,6 +154,7 @@
 
 .chatInputContainer {
   position: sticky;
+  display: flex;
   bottom: 0;
   background-color: #fff;
   padding: 1rem;
@@ -196,7 +198,7 @@
 .submitButton:hover svg {
   fill: #0051b3;
 }
-/*********/
+
 .chatSection {
   display: flex;
   flex-direction: column;

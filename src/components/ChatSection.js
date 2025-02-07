@@ -89,7 +89,7 @@ const ChatSection = ({ selectedProduct }) => {
 
       {/* Sidebar content */}
       {isSidebarOpen && (
-        <div className={styles.topHalf}>
+        <div className={styles.topHalf} style={{ overflowX: 'hidden' }}>
           {selectedProduct && (
             <div className={styles.productHeader}>
               <a href={selectedProduct.url} target="_blank" rel="noopener noreferrer">
@@ -139,14 +139,18 @@ const ChatSection = ({ selectedProduct }) => {
                 </table>
               ) : (
                 <p className={styles.noComparison}>No comparisons found.</p>
+                
               )}
             </div>
+            
           )}
         </div>
       )}
+      
 
       {/* Chat messages and input */}
       <div className={styles.bottomHalf}>
+        
         <div className={styles.chatMessages}>
           {messages.map((msg, index) => (
             <div

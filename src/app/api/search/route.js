@@ -46,8 +46,8 @@ export async function POST(request) {
       {
         id: 1,
         title: "iPhone 15 Pro Max",
-        price: "1259€",
-        oldPrice: "1399€",
+        price: "1259$",
+        oldPrice: "1399$",
         company: "Apple",
         image: "/apple-logo.png",
         url: "#"
@@ -55,7 +55,7 @@ export async function POST(request) {
       {
         id: 2,
         title: "Samsung Galaxy S24 Ultra", 
-        price: "999€",
+        price: "999$",
         company: "Samsung",
         image: "/samsung-logo.png",
         url: "#"
