@@ -1,17 +1,37 @@
-body {
+body{
+  top: 0px;
+  left: 0px;
+  background-color: #e4e4e4;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.homepage {
+  top: 0px;
+  left: 0px;
+  background: #e1e1e1;
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
   font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
   color: #333;
   text-align: center;
+  padding: 20px 100px;
   width: 100%;
 }
 
 .container {
   margin: auto;
   background-color: #1a1c22;
-  border-radius: 0.6rem;
+  border-radius: 0.8rem;
   padding: 300px 500px;
-  color: white;
+  /* color: white;
+  background-image: url('../Assets/shoppyIA.png');
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat; */
+ 
 }
 
 .header {

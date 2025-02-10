@@ -47,17 +47,19 @@ const HomePage = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">All shopping price comparisons, one engine</div>
-      <div className="input-container">
-        <SearchBar onSearch={handleSearch} isHomePage={true} />
-      </div>
-      <div className="note">
-        By clicking "Get Started," you agree to Engine's 
-        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-      </div>
-      <div className="features">
-        {/* Vos caractéristiques restent inchangées */}
+    <div className="homepage">
+      <div className="container">
+        <div className="header">All shopping price comparisons, one engine</div>
+        <div className="input-container">
+          <SearchBar onSearch={handleSearch} isHomePage={true} />
+        </div>
+        <div className="note">
+          By clicking "Get Started," you agree to Engine's 
+          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+        </div>
+        <div className="features">
+          {/* Vos caractéristiques restent inchangées */}
+        </div>
       </div>
     </div>
   );
