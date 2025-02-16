@@ -697,3 +697,55 @@ button:hover {
   background-color: #fff;
   border-left: 1px solid #e0e0e0; */
 }
+
+
+
+
+
+
+
+/* Styles pour l'indicateur de chargement */
+.page_loading__Q7rym {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.page_spinner__1WnEQ {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: page_spin__W_8_q 1s linear infinite;
+}
+
+@keyframes page_spin__W_8_q {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Styles pour les messages d'erreur */
+.page_error__Jil8M {
+  color: #dc3545;
+  padding: 15px;
+  background: #ffe6e6;
+  border-radius: 8px;
+  margin: 10px 0;
+  border: 1px solid #ffcccc;
+}
+
+/* Styles pour les messages "Aucun produit" */
+.page_noProducts__pE_Pk {
+  padding: 15px;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 10px;
+}

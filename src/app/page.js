@@ -43,37 +43,57 @@ export default function Page() {
           <div className={styles.leftContainer}></div>
           <div className={styles.middleContainer}>
             <SearchBar />
-            {messages.length > 0 && (
-              <div className={styles.productsColumn}>
-                {messages.map((msg, index) => (
-                  <div
-                    key={index}
-                    className={msg.role === "user" 
-                      ? styles.userMessage 
-                      : styles.assistantMessage}
-                  >
-                    {msg.role === "user" ? (
-                      <div ref={questionRef} className={styles.userBubble}>
-                        {msg.content}
-                      </div>
-                    ) : (
-                      <div className={styles.aiMessageBlock}>
-                        <AIResponse answer={msg.content} /> 
-                        {msg.products?.length > 0 ? (
-                        <ProductGrid
-                            products={msg.products}
-                            onProductSelect={handleProductSelect}
-                          />
-                        ) : (
-                          <div className={styles.noProducts}></div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
-                {isLoading && <div className={styles.loading}>Searching...</div>}
-              </div>
-            )}
+            <div className={styles.productsColumn}>
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={msg.role === "user" 
+                    ? styles.userMessage 
+                    : styles.assistantMessage}
+                >
+                  {msg.role === "user" ? (
+                    <div ref={questionRef} className={styles.userBubble}>
+                      {msg.content}
+                    </div>
+                  ) : (
+                    <div className={styles.aiMessageBlock}>
+                      {/* Affichage des erreurs */}
+                      {msg.error && (
+                        <div className={styles.error}>{msg.error}</div>
+                      )}
+                      
+                      {/* Contenu normal si pas d'erreur */}
+                      {!msg.error && (
+                        <>
+                          <AIResponse answer={msg.content} />
+                          
+                          {msg.products?.length > 0 ? (
+                            <ProductGrid
+                              products={msg.products}
+                              onProductSelect={handleProductSelect}
+                            />
+                          ) : (
+                            !isLoading && (
+                              <div className={styles.noProducts}>
+                                Aucun produit trouvé pour cette recherche
+                              </div>
+                            )
+                          )}
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+              
+              {/* Indicateur de chargement amélioré */}
+              {isLoading && (
+                <div className={styles.loading}>
+                  <div className={styles.spinner}></div>
+                  Analyse en cours...
+                </div>
+              )}
+            </div>
           </div>
           <div className={styles.rightContainer}>
             <ChatSection

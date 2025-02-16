@@ -9,12 +9,15 @@
     "dev": "next dev"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^132.0.0",
     "axios": "^1.7.9",
     "cheerio": "^1.0.0",
+    "groq-sdk": "^0.15.0",
     "next": "^14.0.0",
     "openai": "^4.77.0",
     "pg": "^8.13.1",
     "puppeteer": "^23.11.1",
+    "puppeteer-core": "^24.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icon": "^1.0.0",
