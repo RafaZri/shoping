@@ -2,6 +2,8 @@
 import SearchBar from "../components/SearchBar";
 import "./HomePage.css";
 import { useSearch } from "../contexts/SearchContext";
+import HomeBanner from './HomeBanner';
+import FeaturedOption from './FeaturedOption';
 
 const HomePage = () => {
   const { setSearchData } = useSearch();
@@ -48,18 +50,19 @@ const HomePage = () => {
 
   return (
     <div className="overflow-hidden px-6 md:px-16 lg:px-32 relative w-full homepage">
-      <div className="container">
-        <div className="header ">All shopping price comparisons, one engine</div>
-        <div className="input-container">
-          <SearchBar onSearch={handleSearch} isHomePage={true} />
-        </div>
-        <div className="note">
-          By clicking "Get Started," you agree to Engine's 
-          <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-        </div>
-        <div className="features">
-          {/* Vos caractéristiques restent inchangées */}
-        </div>
+      <div>
+        <HomeBanner />
+      </div>
+      <div className="header ">All shopping price comparisons, one engine</div>
+      <div className="input-container">
+        <SearchBar onSearch={handleSearch} isHomePage={true} />
+      </div>
+      <div className="note">
+        By clicking "Get Started," you agree to Engine's 
+        <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+      </div>
+      <div className="features">
+        <FeaturedOption />
       </div>
     </div>
   );
