@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from "react";
+import '../../styles/global.css';
 import SearchBar from "../components/SearchBar";
 import HomePage from "../components/HomePage";
 import AIResponse from "../components/AIResponse";
@@ -104,5 +105,7 @@ export default function Page() {
         </>
       )}
     </main>
+
+  
   );
 }

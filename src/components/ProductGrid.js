@@ -46,7 +46,7 @@ const ProductsGrid = ({ products, onProductSelect }) => {
   };
 
   return (
-    <div className={styles.productsGrid} onMouseEnter={hideScrollBar} onMouseLeave={() => document.body.style.overflow = 'auto'}>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 flex-col items-center gap-6 px-6 md:px-16 lg:px-32 mt-6 pb-14 w-full" onMouseEnter={hideScrollBar} onMouseLeave={() => document.body.style.overflow = 'auto'}>
       {/* Map through the products array and render a card for each product */}
       {products.map((item) => (
         <div key={item.id} className={styles.productCard}>

@@ -47,9 +47,9 @@ const HomePage = () => {
   };
 
   return (
-    <div className="homepage">
+    <div className="overflow-hidden px-6 md:px-16 lg:px-32 relative w-full homepage">
       <div className="container">
-        <div className="header">All shopping price comparisons, one engine</div>
+        <div className="header ">All shopping price comparisons, one engine</div>
         <div className="input-container">
           <SearchBar onSearch={handleSearch} isHomePage={true} />
         </div>

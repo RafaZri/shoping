@@ -276,6 +276,17 @@ module.exports = require("node:diagnostics_channel");
 
 /***/ }),
 
+/***/ "node:dns":
+/*!***************************!*\
+  !*** external "node:dns" ***!
+  \***************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("node:dns");
+
+/***/ }),
+
 /***/ "node:events":
 /*!******************************!*\
   !*** external "node:events" ***!
@@ -513,7 +524,7 @@ eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__
 var __webpack_require__ = require("../../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/formdata-node","vendor-chunks/undici","vendor-chunks/axios","vendor-chunks/groq-sdk","vendor-chunks/iconv-lite","vendor-chunks/cheerio","vendor-chunks/parse5","vendor-chunks/form-data-encoder","vendor-chunks/css-select","vendor-chunks/asynckit","vendor-chunks/entities","vendor-chunks/domutils","vendor-chunks/whatwg-url","vendor-chunks/whatwg-mimetype","vendor-chunks/debug","vendor-chunks/agentkeepalive","vendor-chunks/nth-check","vendor-chunks/htmlparser2","vendor-chunks/cheerio-select","vendor-chunks/whatwg-encoding","vendor-chunks/encoding-sniffer","vendor-chunks/domhandler","vendor-chunks/dom-serializer","vendor-chunks/tr46","vendor-chunks/mime-db","vendor-chunks/form-data","vendor-chunks/follow-redirects","vendor-chunks/css-what","vendor-chunks/web-streams-polyfill","vendor-chunks/parse5-parser-stream","vendor-chunks/parse5-htmlparser2-tree-adapter","vendor-chunks/node-fetch","vendor-chunks/domelementtype","vendor-chunks/webidl-conversions","vendor-chunks/safer-buffer","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/mime-types","vendor-chunks/humanize-ms","vendor-chunks/event-target-shim","vendor-chunks/delayed-stream","vendor-chunks/combined-stream","vendor-chunks/boolbase","vendor-chunks/abort-controller"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsearch%2Froute&page=%2Fapi%2Fsearch%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsearch%2Froute.js&appDir=C%3A%5CUsers%5Cjedeo%5CBureau%5CShop%5Cshoping%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cjedeo%5CBureau%5CShop%5Cshoping&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
+var __webpack_exports__ = __webpack_require__.X(0, ["vendor-chunks/next","vendor-chunks/formdata-node","vendor-chunks/undici","vendor-chunks/axios","vendor-chunks/groq-sdk","vendor-chunks/iconv-lite","vendor-chunks/cheerio","vendor-chunks/parse5","vendor-chunks/form-data-encoder","vendor-chunks/css-select","vendor-chunks/asynckit","vendor-chunks/entities","vendor-chunks/domutils","vendor-chunks/math-intrinsics","vendor-chunks/es-errors","vendor-chunks/whatwg-url","vendor-chunks/whatwg-mimetype","vendor-chunks/call-bind-apply-helpers","vendor-chunks/debug","vendor-chunks/agentkeepalive","vendor-chunks/nth-check","vendor-chunks/htmlparser2","vendor-chunks/cheerio-select","vendor-chunks/whatwg-encoding","vendor-chunks/get-proto","vendor-chunks/encoding-sniffer","vendor-chunks/domhandler","vendor-chunks/dom-serializer","vendor-chunks/tr46","vendor-chunks/mime-db","vendor-chunks/has-symbols","vendor-chunks/gopd","vendor-chunks/function-bind","vendor-chunks/form-data","vendor-chunks/follow-redirects","vendor-chunks/css-what","vendor-chunks/web-streams-polyfill","vendor-chunks/parse5-parser-stream","vendor-chunks/parse5-htmlparser2-tree-adapter","vendor-chunks/node-fetch","vendor-chunks/domelementtype","vendor-chunks/webidl-conversions","vendor-chunks/safer-buffer","vendor-chunks/proxy-from-env","vendor-chunks/ms","vendor-chunks/mime-types","vendor-chunks/humanize-ms","vendor-chunks/hasown","vendor-chunks/has-tostringtag","vendor-chunks/get-intrinsic","vendor-chunks/event-target-shim","vendor-chunks/es-set-tostringtag","vendor-chunks/es-object-atoms","vendor-chunks/es-define-property","vendor-chunks/dunder-proto","vendor-chunks/delayed-stream","vendor-chunks/combined-stream","vendor-chunks/boolbase","vendor-chunks/abort-controller"], () => (__webpack_exec__("(rsc)/./node_modules/next/dist/build/webpack/loaders/next-app-loader.js?name=app%2Fapi%2Fsearch%2Froute&page=%2Fapi%2Fsearch%2Froute&appPaths=&pagePath=private-next-app-dir%2Fapi%2Fsearch%2Froute.js&appDir=C%3A%5CUsers%5Cjedeo%5CBureau%5CShop%5Cshoping%5Csrc%5Capp&pageExtensions=tsx&pageExtensions=ts&pageExtensions=jsx&pageExtensions=js&rootDir=C%3A%5CUsers%5Cjedeo%5CBureau%5CShop%5Cshoping&isDev=true&tsconfigPath=tsconfig.json&basePath=&assetPrefix=&nextConfigOutput=&preferredRegion=&middlewareConfig=e30%3D!")));
 module.exports = __webpack_exports__;
 
 })();
