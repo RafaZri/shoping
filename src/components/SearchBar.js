@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import styles from './SearchBar.module.css';
+import './SearchBar.css'; 
 import { useSearch } from '../contexts/SearchContext';
 
 export default function SearchBar({isHomePage}) {
@@ -16,18 +16,18 @@ export default function SearchBar({isHomePage}) {
   };
 
   return (
-    <form className={`${styles.searchBar} ${isLoading ? styles.loading : ''} ${isHomePage ? styles.homePageVariant : ''}`} onSubmit={handleSubmit}>
+    <form className={`searchBar ${isLoading ? 'loading' : ''} ${isHomePage ? 'homePageVariant' : ''}`} onSubmit={handleSubmit}>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search product..."
-        className={styles.input}
+        className="input rounded-full"
         disabled={isLoading}
       />
-      <button type="submit" className={styles.button} disabled={isLoading}>
+      <button type="submit" className="button rounded-1xl" disabled={isLoading}>
         {isLoading ? (
-          <div className={styles.spinner}></div>
+          <div className="spinner"></div>
         ) : (
           'Search'
         )}
