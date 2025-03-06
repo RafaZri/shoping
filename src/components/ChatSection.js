@@ -6,6 +6,7 @@
  * - A top section displaying product details and price comparisons.
  * - A bottom section for chat messages and user input.
  * 
+ * 
  * Props:
  * - selectedProduct (object): The currently selected product to display and chat about.
  */
@@ -147,7 +148,6 @@ const ChatSection = ({ selectedProduct }) => {
         </div>
       )}
       
-
       {/* Chat messages and input */}
       <div className={styles.bottomHalf}>
         
