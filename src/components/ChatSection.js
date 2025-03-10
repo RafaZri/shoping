@@ -6,7 +6,6 @@
  * - A top section displaying product details and price comparisons.
  * - A bottom section for chat messages and user input.
  * 
- * 
  * Props:
  * - selectedProduct (object): The currently selected product to display and chat about.
  */
@@ -14,7 +13,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './ChatSection.module.css';
 
-// SubmitIcon: A reusable SVG icon for the submit button
 const SubmitIcon = () => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
     <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" fill="currentColor" />

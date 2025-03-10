@@ -59,14 +59,13 @@
 
 /* Custom styles for Nike images */
 .nikeImage {
-  width: 140%; /* Enlarge the image beyond the container */
-  position: relative; /* Allow positioning adjustments */
-  left: 50%; /* Shift the image to the right by 50% of its container */
-  transform: translateX(-50%); /* Center the image horizontally */
+  width: 140%; 
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   object-fit: cover; 
 }
 
-/* ============= TEXT AREA ============= */
 .cardBody {
   flex: 1;
   display: flex;
@@ -86,13 +85,13 @@
   overflow: hidden;
 }
 
-/* ============= PRICE ============= */
+
 .priceContainer {
   display: flex;
   flex-direction: row;
   align-items: baseline;
   gap: 8px;
-  margin-top: 0.5rem; /* Optional: add some spacing */
+  margin-top: 0.5rem; 
 }
 
 .currentPrice {
@@ -107,10 +106,9 @@
   text-decoration: line-through;
 }
 
-/* ============= LOGO AND ICON CONTAINER ============= */
 .logoIconContainer {
   display: flex;
-  justify-content: space-between; /* Logo on the left, icon on the right */
+  justify-content: space-between; 
   align-items: center;
   margin-top: 0.5rem;
 }
@@ -126,7 +124,6 @@
   object-fit: contain;
 }
 
-/* ============= INFO ICON ============= */
 .iconContainer {
   display: flex;
   align-items: center;
@@ -138,10 +135,10 @@
 .iconContainer svg {
   width: 20px;
   height: 20px;
-  fill: #0070f3; /* Blue color for the info icon */
+  fill: #0070f3; 
   transition: fill 0.3s;
 }
 
 .iconContainer:hover svg {
-  fill: #0051b3; /* Darker blue on hover */
+  fill: #0051b3; 
 }
