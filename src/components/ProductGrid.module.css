@@ -51,18 +51,20 @@
 }
 
 /* Smaller images for Amazon products */
-
-.productTitle {
-  font-size: 0.95rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+.amazonImage {
+  
+  max-width: 80%; /* Reduce the size of Amazon images */
+  max-height: 80%; /* Reduce the size of Amazon images */
 }
 
+/* Custom styles for Nike images */
+.nikeImage {
+  width: 140%; 
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  object-fit: cover; 
+}
 
 .priceContainer {
   display: flex;
