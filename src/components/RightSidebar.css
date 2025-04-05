@@ -88,32 +88,7 @@ body.dark{
   transition: var(--tran-02);
 }
 
-.sidebar header {
-  position: relative;
-}
 
-.sidebar .image-text h1 {
-  width: 40px;
-  border-radius: 6px;
-}
-
-.sidebar header .image-text {
-  display: flex;
-  align-items: center;
-}
-
-header .image-text .header-text {
-  display: flex;
-  flex-direction: column;
-}
-
-.header-text .name {
-  font-weight: 600;
-}
-
-.header-text .profession {
-  margin-top: -2px;
-}
 
 .sidebar header .toggle {
   position: absolute;
