@@ -1,3 +1,16 @@
+/**
+ * ProductsGrid Component
+ * 
+ * This component displays a grid of product cards. Each card includes:
+ * - A clickable product image linking to the product URL.
+ * - The product title, current price, and old price (if available).
+ * - The company logo (e.g., Amazon or Nike).
+ * - An info icon that triggers a callback when clicked.
+ * 
+ * Props:
+ * - products (array): An array of product objects to display.
+ * - onProductSelect (function): A callback function triggered when the info icon is clicked.
+ */
 
 import React from 'react'; // Import React
 import styles from './ProductGrid.module.css'; // Import CSS module for component-specific styling
@@ -38,7 +51,21 @@ const ProductsGrid = ({ products, onProductSelect }) => {
       {products.map((item) => (
         <div key={item.id} className={styles.productCard}>
           {/* Clickable image container */}
-          
+          <a
+            href={item.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.imageContainer}
+          >
+            {/* Product image */}
+            <img
+              src={item.image}
+              alt={item.title}
+              className={`${styles.productImage} ${
+                item.company === 'Amazon' ? styles.amazonImage : ''
+              } ${item.company === 'Nike' ? styles.nikeImage : ''}`}
+            />
+          </a>
 
           {/* Text content */}
           <div className={styles.cardBody}>
