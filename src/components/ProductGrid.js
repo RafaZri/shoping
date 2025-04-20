@@ -1,4 +1,16 @@
-
+/**
+ * ProductsGrid Component
+ * 
+ * This component displays a grid of product cards. Each card includes:
+ * - A clickable product image linking to the product URL.
+ * - The product title, current price, and old price (if available).
+ * - The company logo (e.g., Amazon or Nike).
+ * - An info icon that triggers a callback when clicked.
+ * 
+ * Props:
+ * - products (array): An array of product objects to display.
+ * - onProductSelect (function): A callback function triggered when the info icon is clicked.
+ */
 
 import React from 'react'; // Import React
 import styles from './ProductGrid.module.css'; // Import CSS module for component-specific styling
@@ -10,6 +22,23 @@ const InfoIcon = () => (
   </svg>
 );
 
+// ProductsGrid Component: Displays a grid of product cards
+const ProductsGrid = ({ products, onProductSelect }) => {
+  // If there are no products, return nothing (or a fallback message)
+  if (!products || products.length === 0) {
+    return null; // or <p>No products found.</p>
+  }
+
+  // Function: Get the logo URL based on the company name
+  const getLogo = (company) => {
+    if (company === 'Amazon') {
+      return 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg';
+    }
+    if (company === 'Nike') {
+      return 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg';
+    }
+    return ''; // Return an empty string if the company is not recognized
+  };
 
   // Function: Hide the scroll bar but keep the page scrollable
   const hideScrollBar = () => {
