@@ -8,35 +8,35 @@ import { getTranslation } from '../utils/translations';
 const blogPosts = [
   {
     id: 1,
-    title: 'Best Running Shoes 2024: Amazon vs Nike Comparison',
-    excerpt: 'Compare the top running shoes from Amazon and Nike. Find the best deals and save money on your next pair.',
+    title: 'Best Running Shoes 2024: Price Comparison Guide',
+    excerpt: 'Compare the top running shoes across multiple retailers. Find the best deals and save money on your next pair.',
     slug: 'best-running-shoes-2024',
     category: 'Athletic Footwear',
     readTime: '5 min read',
     image: '/blog/running-shoes.jpg',
-    keywords: ['running shoes', 'Amazon deals', 'Nike deals', 'athletic footwear'],
+    keywords: ['running shoes', 'online deals', 'retailer deals', 'athletic footwear'],
     publishDate: '2024-01-15'
   },
   {
     id: 2,
-    title: 'How to Find the Best Deals on Amazon',
-    excerpt: 'Master the art of finding incredible deals on Amazon. Learn price tracking, coupon stacking, and more.',
-    slug: 'amazon-deals-guide',
+    title: 'How to Find the Best Deals Online',
+    excerpt: 'Master the art of finding incredible deals across multiple retailers. Learn price tracking, coupon stacking, and more.',
+    slug: 'online-deals-guide',
     category: 'Shopping Tips',
     readTime: '7 min read',
-    image: '/blog/amazon-deals.jpg',
-    keywords: ['Amazon deals', 'shopping tips', 'price tracking', 'coupons'],
+    image: '/blog/online-deals.jpg',
+    keywords: ['online deals', 'shopping tips', 'price tracking', 'coupons'],
     publishDate: '2024-01-10'
   },
   {
     id: 3,
-    title: 'Nike vs Adidas: Which Brand Offers Better Value?',
-    excerpt: 'Detailed comparison of Nike and Adidas pricing, quality, and value for money across different product categories.',
-    slug: 'nike-vs-adidas-comparison',
+    title: 'Top Athletic Brands: Which Offers Better Value?',
+    excerpt: 'Detailed comparison of major athletic brands pricing, quality, and value for money across different product categories.',
+    slug: 'athletic-brands-comparison',
     category: 'Brand Comparison',
     readTime: '6 min read',
-    image: '/blog/nike-adidas.jpg',
-    keywords: ['Nike vs Adidas', 'brand comparison', 'athletic wear', 'value'],
+    image: '/blog/athletic-brands.jpg',
+    keywords: ['athletic brands', 'brand comparison', 'athletic wear', 'value'],
     publishDate: '2024-01-05'
   },
   {
