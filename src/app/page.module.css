@@ -1,0 +1,188 @@
+.main {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* Left Container: Empty for now */
+/* .leftContainer {
+  flex: 1;
+  border-right: 1px solid #e0e0e0;
+} */
+
+/* Middle Container: Search Bar, AI Answers, and Products */
+.middleContainer {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  
+}
+
+/* Products Column */
+.productsColumn {
+  flex: 1;
+  overflow-y: scroll; /* Permet le défilement vertical */
+  scrollbar-width: none; /* Masque la barre pour Firefox */
+  -ms-overflow-style: none; /* Enable scrolling */
+  padding-top: 100px; /* Add padding to account for the search bar's height */
+}
+
+/* User Message Styling */
+.userMessage {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 8%;
+  position: relative;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.userBubble {
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 78%;
+  word-wrap: break-word;
+  position: relative;
+  display: inline-block;
+}
+
+.messageText {
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
+.messageActions {
+  display: flex;
+  gap: 4px;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  position: static;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: none;
+  justify-content: flex-end;
+  margin-top: 0;
+  margin-left: 0;
+  width: fit-content;
+  align-self: flex-start;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  color: #6b7280;
+}
+
+.copyButton:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.copyButton svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* AI Message Styling */
+.assistantMessage {
+  margin-bottom: 1.5rem;
+}
+
+.aiMessageBlock {
+  margin-bottom: 1.5rem;
+  background-color: transparent;
+}
+
+/* AI Response Container */
+.aiResponseContainer {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border-left: 4px solid #007bff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.aiResponseContainer .aiResponse {
+  margin-bottom: 0;
+}
+
+/* Products Container */
+.productsContainer {
+  margin-top: 1rem;
+}
+
+.aiMessageBlock .aiResponse {
+  margin-bottom: 1.5rem;
+}
+
+/* Loader */
+.loading {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Styles pour les messages d'erreur */
+.error {
+  color: #dc3545;
+  padding: 15px;
+  background: #ffe6e6;
+  border-radius: 8px;
+  margin: 10px 0;
+  border: 1px solid #ffcccc;
+}
+
+/* Styles pour les messages "Aucun produit" */
+.noProducts {
+  padding: 15px;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Right Container: Chat Section */
+.rightContainer {
+  /* flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-left: 1px solid #e0e0e0; */
+}

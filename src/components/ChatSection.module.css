@@ -1,0 +1,213 @@
+/* Product Content */
+.productContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+/* Product Header */
+.productHeader {
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.productImage {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.productImage:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.productName {
+  font-size: 0.9rem;
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.productPrice {
+  font-weight: 700;
+  color: #059669;
+  font-size: 1rem;
+}
+
+/* Price Comparison Section */
+.priceComparison {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.comparisonTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border-bottom: 1px solid #e2e8f0;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priceTable {
+  flex: 1;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.priceTable table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.priceTable th,
+.priceTable td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.priceTable th {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priceTable td {
+  font-size: 0.8rem;
+  color: #1e293b;
+}
+
+.priceTable tr:hover {
+  background: #f8fafc;
+}
+
+.retailerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retailerLogo {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.priceCell {
+  font-weight: 700;
+  color: #059669;
+}
+
+.stockIn {
+  color: #059669;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.inStock {
+  background: #f0fdf4;
+}
+
+/* Toggle Button */
+.toggleButton {
+  position: absolute;
+  top: 20px;
+  left: -50px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  z-index: 1001;
+}
+
+.toggleButton:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.toggleButton svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+/* Logo Styles */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.logoIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoText {
+  font-size: 11px;
+  font-weight: bold;
+  color: #374151;
+  line-height: 1.1;
+  text-align: center;
+}
+
+/* Main ChatSection with Slide Animation */
+.chatSection {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ffffff, #f8fafc);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1000;
+}
+
+.sidebarClosed {
+  transform: translateX(100%);
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+} 

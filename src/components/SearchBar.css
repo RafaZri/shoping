@@ -1,0 +1,83 @@
+.searchBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem;
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.searchBar.homePageVariant {
+  position: static;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 2px solid #e9ecef !important;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  background-color: white;
+  z-index: 1001;
+}
+
+.input:focus {
+  border-color: #10b981 !important;
+}
+
+.loading .input {
+  border-color: #e9ecef !important;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: #000000;
+  z-index: 1001;
+}
+
+.button:hover {
+  border-color: #10b981 !important;
+  background-color: #d1fae5;
+  color: #000000;
+}
+
+.button:active {
+  border-color: #059669 !important;
+  background-color: #a7f3d0;
+  color: #000000;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #10b981;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
