@@ -7,14 +7,14 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: {
-    default: 'PriceCompare - Find the Best Deals on Amazon & Nike',
+    default: 'PriceCompare - Find the Best Deals Across Multiple Retailers',
     template: '%s | PriceCompare'
   },
-  description: 'Compare prices across Amazon and Nike to find the best deals. Get AI-powered product recommendations and save money on your purchases.',
+  description: 'Compare prices across multiple retailers to find the best deals. Get product recommendations and save money on your purchases.',
   keywords: [
     'price comparison',
-    'Amazon deals',
-    'Nike deals',
+    'online deals',
+    'retailer deals',
     'best prices',
     'online shopping',
     'product comparison',
@@ -43,22 +43,22 @@ export const metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://yourdomain.com',
-    title: 'PriceCompare - Find the Best Deals on Amazon & Nike',
-    description: 'Compare prices across Amazon and Nike to find the best deals. Get AI-powered product recommendations and save money on your purchases.',
+    title: 'PriceCompare - Find the Best Deals Across Multiple Retailers',
+    description: 'Compare prices across multiple retailers to find the best deals. Get product recommendations and save money on your purchases.',
     siteName: 'PriceCompare',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'PriceCompare - Best Deals on Amazon & Nike',
+        alt: 'PriceCompare - Best Deals Across Multiple Retailers',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'PriceCompare - Find the Best Deals on Amazon & Nike',
-    description: 'Compare prices across Amazon and Nike to find the best deals. Get AI-powered product recommendations and save money on your purchases.',
+    title: 'PriceCompare - Find the Best Deals Across Multiple Retailers',
+    description: 'Compare prices across multiple retailers to find the best deals. Get product recommendations and save money on your purchases.',
     images: ['/og-image.jpg'],
     creator: '@pricecompare',
   },
@@ -93,7 +93,7 @@ export default function RootLayout({ children }) {
               "@type": "WebSite",
               "name": "PriceCompare",
               "url": "https://yourdomain.com",
-              "description": "Compare prices across Amazon and Nike to find the best deals",
+              "description": "Compare prices across multiple retailers to find the best deals",
               "potentialAction": {
                 "@type": "SearchAction",
                 "target": "https://yourdomain.com/search?q={search_term_string}",

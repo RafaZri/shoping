@@ -4,7 +4,7 @@ export const translations = {
     searchPlaceholder: "Search for products...",
     searchButton: "Search",
     homepageTitle: "Find the Best Deals",
-    homepageSubtitle: "Compare prices across Amazon and Nike",
+    homepageSubtitle: "Compare prices across multiple retailers",
     
     // Product Grid
     loadMore: "Load More",
@@ -76,7 +76,7 @@ export const translations = {
     searchPlaceholder: "Rechercher des produits...",
     searchButton: "Rechercher",
     homepageTitle: "Trouvez les Meilleures Offres",
-    homepageSubtitle: "Comparez les prix sur Amazon et Nike",
+    homepageSubtitle: "Comparez les prix sur plusieurs détaillants",
     
     // Product Grid
     loadMore: "Charger Plus",
