@@ -9,8 +9,10 @@ import ChatSection from "../components/ChatSection";
 import styles from "./page.module.css";
 import { useSearch } from "../contexts/SearchContext";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useAuth } from "../contexts/AuthContext";
 import { getTranslation } from "../utils/translations";
 import LanguageSwitcher from "../components/LanguageSwitcher";
+import Link from 'next/link';
 
 export default function Page() {
   const { 
@@ -22,6 +24,7 @@ export default function Page() {
   } = useSearch();
   
   const { currentLanguage } = useLanguage();
+  const { user, loading: authLoading } = useAuth();
   const questionRef = useRef(null);
   const messagesEndRef = useRef(null);
 
@@ -75,7 +78,21 @@ export default function Page() {
         <>
           <div className={styles.leftContainer}></div>
           <div className={styles.middleContainer}>
-            <SearchBar />
+            <div className={styles.headerContainer}>
+              <SearchBar />
+              {!authLoading && user && (
+                <div className={styles.profileIcon}>
+                  <Link href="/dashboard" className={styles.profileLink}>
+                    <div className={styles.profileAvatar}>
+                      <span className={styles.profileInitial}>
+                        {user.firstName.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                    <span className={styles.profileTooltip}>View Profile</span>
+                  </Link>
+                </div>
+              )}
+            </div>
             <div className={styles.productsColumn}>
               {messages.map((msg, index) => (
                 <div
