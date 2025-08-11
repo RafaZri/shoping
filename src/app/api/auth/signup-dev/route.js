@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import crypto from 'crypto';
-import { sendVerificationEmail } from '../../../utils/emailService';
 
 // In-memory user storage (replace with database in production)
 let users = [];
@@ -31,11 +29,7 @@ export async function POST(request) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-    // Generate verification token
-    const verificationToken = crypto.randomBytes(32).toString('hex');
-    const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
-
-    // Create user
+    // Create user (auto-verified for development)
     const newUser = {
       id: Date.now().toString(),
       firstName,
@@ -43,9 +37,8 @@ export async function POST(request) {
       email,
       password: hashedPassword,
       createdAt: new Date().toISOString(),
-      isVerified: false,
-      verificationToken,
-      verificationExpiry: verificationExpiry.toISOString(),
+      isVerified: true, // Auto-verified for development
+      verifiedAt: new Date().toISOString(),
       searchHistory: [],
       savedProducts: []
     };
@@ -53,25 +46,14 @@ export async function POST(request) {
     // Store user (in production, save to database)
     users.push(newUser);
 
-    // Send verification email (optional - won't fail signup if email fails)
-    let emailResult = { success: false, error: 'Email not configured' };
-    try {
-      emailResult = await sendVerificationEmail(email, verificationToken, firstName);
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      emailResult = { success: false, error: emailError.message };
-    }
-
     // Return success (don't include password)
     const { password: _, ...userWithoutPassword } = newUser;
     
     return NextResponse.json(
       { 
-        message: emailResult.success 
-          ? 'Account created successfully! Please check your email to verify your account.'
-          : 'Account created successfully! Please check your email to verify your account. (Email service not configured)',
+        message: 'Account created successfully! You can now sign in.',
         user: userWithoutPassword,
-        emailSent: emailResult.success
+        emailSent: false
       },
       { status: 201 }
     );

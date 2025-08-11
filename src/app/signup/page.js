@@ -71,7 +71,7 @@ export default function SignUp() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch('/api/auth/signup-dev', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -93,7 +93,10 @@ export default function SignUp() {
         } else {
           setMessage('Account created successfully! Please check your email to verify your account. If you don\'t see the email, check your spam folder.');
         }
-        // Don't redirect immediately, let user see the message
+        // Redirect to signin after a short delay
+        setTimeout(() => {
+          router.push('/signin?message=Account created successfully! You can now sign in.');
+        }, 2000);
       } else {
         setErrors({ general: data.error || 'Sign up failed. Please try again.' });
       }
