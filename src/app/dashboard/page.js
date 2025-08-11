@@ -75,15 +75,15 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">
-                ← Back to Home
+              <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors">
+                ← New Search
               </Link>
               {hasActiveSearch && lastSearchQuery && (
                 <button
                   onClick={handleBackToSearch}
                   className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors"
                 >
-                  ← Back to Search: "{lastSearchQuery}"
+                  ← Continue Search: "{lastSearchQuery}"
                 </button>
               )}
             </div>
