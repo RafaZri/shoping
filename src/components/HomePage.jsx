@@ -34,25 +34,13 @@ const HomePage = () => {
         <SearchBar isHomePage={true} />
       </div>
       
-      {!loading && (
-        <>
-          {user ? (
-            <div className="text-center w-full max-w-2xl mx-auto mb-6">
-              <p className="text-sm text-gray-600">
-                Welcome back, <span className="font-semibold">{user.firstName}!</span>
-                <Link href="/dashboard" className="text-blue-500 hover:text-blue-700 hover:underline ml-2">View Dashboard</Link> • 
-                <button onClick={handleSignOut} className="text-blue-500 hover:text-blue-700 hover:underline ml-2 bg-transparent border-none cursor-pointer">Sign Out</button>
-              </p>
-            </div>
-          ) : (
-            <div className="text-center w-full max-w-2xl mx-auto mb-6">
-              <p className="text-xs text-gray-400">
-                Already have an account? <Link href="/signin" className="text-blue-500 hover:text-blue-700 hover:underline">Sign in</Link> • 
-                New here? <Link href="/signup" className="text-blue-500 hover:text-blue-700 hover:underline">Create account</Link>
-              </p>
-            </div>
-          )}
-        </>
+      {!loading && !user && (
+        <div className="text-center w-full max-w-2xl mx-auto mb-6">
+          <p className="text-xs text-gray-400">
+            Already have an account? <Link href="/signin" className="text-blue-500 hover:text-blue-700 hover:underline">Sign in</Link> • 
+            New here? <Link href="/signup" className="text-blue-500 hover:text-blue-700 hover:underline">Create account</Link>
+          </p>
+        </div>
       )}
       
       <div className="text-center w-full max-w-2xl mx-auto">
