@@ -53,6 +53,23 @@ export default function Dashboard() {
     }
   };
 
+  const handleNewSearch = () => {
+    // Clear the search state and go to fresh homepage
+    setSearchData(prev => ({
+      ...prev,
+      showHomePage: true,
+      messages: [],
+      isLoading: false,
+      selectedProduct: null,
+      searchQuery: '',
+      searchResults: [],
+      error: null,
+      hasActiveSearch: false,
+      lastSearchQuery: ''
+    }));
+    router.push('/');
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -75,9 +92,12 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors">
+              <button
+                onClick={handleNewSearch}
+                className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors"
+              >
                 New Search
-              </Link>
+              </button>
               {hasActiveSearch && lastSearchQuery && (
                 <button
                   onClick={handleBackToSearch}
