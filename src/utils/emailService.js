@@ -2,14 +2,22 @@ import nodemailer from 'nodemailer';
 
 // Create transporter (configure for your email service)
 const createTransporter = () => {
+  // Check if email is configured
+  const emailUser = process.env.EMAIL_USER;
+  const emailPassword = process.env.EMAIL_PASSWORD;
+  
+  if (!emailUser || !emailPassword || emailUser === 'your-email@gmail.com') {
+    throw new Error('Email not configured. Please set EMAIL_USER and EMAIL_PASSWORD environment variables.');
+  }
+  
   // For development/testing, you can use Gmail or other services
   // In production, use services like SendGrid, Mailgun, etc.
   
   return nodemailer.createTransporter({
     service: 'gmail', // or 'outlook', 'yahoo', etc.
     auth: {
-      user: process.env.EMAIL_USER || 'your-email@gmail.com',
-      pass: process.env.EMAIL_PASSWORD || 'your-app-password'
+      user: emailUser,
+      pass: emailPassword
     }
   });
 };
