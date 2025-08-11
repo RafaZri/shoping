@@ -136,9 +136,9 @@ export default function SignUp() {
         }
         // Reset form state
         resetForm();
-        // Redirect to signin after a short delay
+        // Redirect to homepage after a short delay
         setTimeout(() => {
-          router.push('/signin?message=Account created successfully! You can now sign in.');
+          router.push('/?message=Account created successfully! You can now sign in.');
         }, 2000);
       } else {
         setErrors({ general: data.error || 'Sign up failed. Please try again.' });
