@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSearch } from '../../contexts/SearchContext';
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -9,6 +10,7 @@ export default function Dashboard() {
   const [savedProducts, setSavedProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
+  const { hasActiveSearch, lastSearchQuery, handleSearch } = useSearch();
 
   useEffect(() => {
     // Check if user is authenticated
@@ -44,6 +46,13 @@ export default function Dashboard() {
     }
   };
 
+  const handleBackToSearch = () => {
+    if (hasActiveSearch && lastSearchQuery) {
+      handleSearch(lastSearchQuery);
+      router.push('/');
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -65,10 +74,18 @@ export default function Dashboard() {
       <div className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
-            <div className="flex items-center">
+            <div className="flex items-center space-x-4">
               <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">
                 ← Back to Home
               </Link>
+              {hasActiveSearch && lastSearchQuery && (
+                <button
+                  onClick={handleBackToSearch}
+                  className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors"
+                >
+                  ← Back to Search: "{lastSearchQuery}"
+                </button>
+              )}
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-700">Welcome, {user.firstName}!</span>
