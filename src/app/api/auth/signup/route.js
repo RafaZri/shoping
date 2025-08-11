@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import { sendVerificationEmail } from '../../../utils/emailService';
+import { sendVerificationEmail } from '../../../utils/emailServiceDev';
 
 // In-memory user storage (replace with database in production)
 let users = [];

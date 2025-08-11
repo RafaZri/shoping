@@ -6,15 +6,20 @@ const createTransporter = () => {
   const emailUser = process.env.EMAIL_USER;
   const emailPassword = process.env.EMAIL_PASSWORD;
   
-  if (!emailUser || !emailPassword || emailUser === 'your-email@gmail.com') {
+  if (!emailUser || !emailPassword) {
     throw new Error('Email not configured. Please set EMAIL_USER and EMAIL_PASSWORD environment variables.');
   }
   
-  // For development/testing, you can use Gmail or other services
-  // In production, use services like SendGrid, Mailgun, etc.
+  // Determine email service based on email domain
+  let service = 'gmail';
+  if (emailUser.includes('@yahoo.com')) {
+    service = 'yahoo';
+  } else if (emailUser.includes('@outlook.com') || emailUser.includes('@hotmail.com')) {
+    service = 'outlook';
+  }
   
   return nodemailer.createTransporter({
-    service: 'gmail', // or 'outlook', 'yahoo', etc.
+    service: service,
     auth: {
       user: emailUser,
       pass: emailPassword
