@@ -26,6 +26,20 @@ const HomePage = () => {
       </div>
       
       <div className="text-center w-full max-w-2xl mx-auto">
+        <div className="flex justify-center space-x-4 mb-4">
+          <Link 
+            href="/signup" 
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            Sign Up
+          </Link>
+          <Link 
+            href="/signin" 
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-md text-sm font-medium transition-colors"
+          >
+            Sign In
+          </Link>
+        </div>
         <p className="text-sm text-gray-500">
           By using our service, you agree to our 
           <Link href="/terms" className="text-blue-600 hover:underline mx-1">Terms of Service</Link> and 
