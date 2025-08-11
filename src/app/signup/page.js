@@ -146,7 +146,7 @@ export default function SignUp() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4 items-end">
               <div className="min-w-0">
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                   First name
