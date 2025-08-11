@@ -26,24 +26,14 @@ const HomePage = () => {
       </div>
       
       <div className="text-center w-full max-w-2xl mx-auto">
-        <div className="flex justify-center space-x-4 mb-4">
-          <Link 
-            href="/signup" 
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md text-sm font-medium transition-colors"
-          >
-            Sign Up
-          </Link>
-          <Link 
-            href="/signin" 
-            className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-md text-sm font-medium transition-colors"
-          >
-            Sign In
-          </Link>
-        </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-500 mb-2">
           By using our service, you agree to our 
           <Link href="/terms" className="text-blue-600 hover:underline mx-1">Terms of Service</Link> and 
           <Link href="/privacy" className="text-blue-600 hover:underline mx-1">Privacy Policy</Link>
+        </p>
+        <p className="text-xs text-gray-400">
+          Already have an account? <Link href="/signin" className="text-blue-500 hover:text-blue-700 hover:underline">Sign in</Link> • 
+          New here? <Link href="/signup" className="text-blue-500 hover:text-blue-700 hover:underline">Create account</Link>
         </p>
       </div>
     </div>
