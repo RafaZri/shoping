@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-import { addUser } from '../../../utils/userStorage';
+import { addUser, findUserByEmail } from '../../../utils/userStorage';
 
 export async function POST(request) {
   try {
@@ -15,7 +15,7 @@ export async function POST(request) {
     }
 
     // Check if email already exists
-    const existingUser = await import('../../../utils/userStorage').then(m => m.findUserByEmail(email));
+    const existingUser = findUserByEmail(email);
     if (existingUser) {
       return NextResponse.json(
         { error: 'Email already registered' },
