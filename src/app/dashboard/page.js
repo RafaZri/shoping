@@ -48,7 +48,7 @@ export default function Dashboard() {
 
   const handleBackToSearch = () => {
     if (hasActiveSearch && lastSearchQuery) {
-      handleSearch(lastSearchQuery);
+      // Just go back to the search results page without making a new search
       router.push('/');
     }
   };
@@ -76,14 +76,14 @@ export default function Dashboard() {
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center space-x-4">
               <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors">
-                ← New Search
+                New Search
               </Link>
               {hasActiveSearch && lastSearchQuery && (
                 <button
                   onClick={handleBackToSearch}
                   className="text-blue-600 hover:text-blue-800 text-sm bg-blue-50 hover:bg-blue-100 px-3 py-1 rounded-md transition-colors"
                 >
-                  ← Continue Search: "{lastSearchQuery}"
+                  Continue Search
                 </button>
               )}
             </div>
