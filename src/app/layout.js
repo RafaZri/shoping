@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google'
 import '../../styles/global.css'
 import { SearchProvider } from '../contexts/SearchContext'
 import { LanguageProvider } from '../contexts/LanguageContext'
+import { AuthProvider } from '../contexts/AuthContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -128,11 +129,13 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className={inter.className}>
-        <LanguageProvider>
-          <SearchProvider>
-            {children}
-          </SearchProvider>
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <SearchProvider>
+              {children}
+            </SearchProvider>
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   )
