@@ -71,28 +71,28 @@ export default function Page() {
 
   return (
     <main className={styles.main} id="home2">
-      <LanguageSwitcher />
+      <div className={styles.topBar}>
+        <LanguageSwitcher />
+        {!authLoading && user && (
+          <div className={styles.profileIcon}>
+            <Link href="/dashboard" className={styles.profileLink}>
+              <div className={styles.profileAvatar}>
+                <span className={styles.profileInitial}>
+                  {user.firstName.charAt(0).toUpperCase()}
+                </span>
+              </div>
+              <span className={styles.profileTooltip}>View Profile</span>
+            </Link>
+          </div>
+        )}
+      </div>
       {showHomePage ? (
         <HomePage />
       ) : (
         <>
           <div className={styles.leftContainer}></div>
           <div className={styles.middleContainer}>
-            <div className={styles.headerContainer}>
-              <SearchBar />
-              {!authLoading && user && (
-                <div className={styles.profileIcon}>
-                  <Link href="/dashboard" className={styles.profileLink}>
-                    <div className={styles.profileAvatar}>
-                      <span className={styles.profileInitial}>
-                        {user.firstName.charAt(0).toUpperCase()}
-                      </span>
-                    </div>
-                    <span className={styles.profileTooltip}>View Profile</span>
-                  </Link>
-                </div>
-              )}
-            </div>
+            <SearchBar />
             <div className={styles.productsColumn}>
               {messages.map((msg, index) => (
                 <div
