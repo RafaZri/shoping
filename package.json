@@ -13,7 +13,9 @@
   "dependencies": {
     "@sparticuz/chromium": "^132.0.0",
     "axios": "^1.7.9",
+    "bcryptjs": "^3.0.2",
     "cheerio": "^1.0.0",
+    "jsonwebtoken": "^9.0.2",
     "next": "^14.0.0",
     "pg": "^8.13.1",
     "puppeteer": "^23.11.1",
