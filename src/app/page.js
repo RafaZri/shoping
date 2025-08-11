@@ -20,7 +20,8 @@ export default function Page() {
     messages, 
     isLoading, 
     selectedProduct, 
-    setSearchData 
+    setSearchData,
+    clearActiveSearch
   } = useSearch();
   
   const { currentLanguage } = useLanguage();

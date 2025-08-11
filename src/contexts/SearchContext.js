@@ -12,7 +12,9 @@ export const SearchProvider = ({ children }) => {
     selectedProduct: null,
     searchQuery: '',
     searchResults: [],
-    error: null
+    error: null,
+    hasActiveSearch: false,
+    lastSearchQuery: ''
   });
 
   const handleSearch = async (query) => {
@@ -22,6 +24,8 @@ export const SearchProvider = ({ children }) => {
         isLoading: true,
         showHomePage: false,
         error: null,
+        hasActiveSearch: true,
+        lastSearchQuery: query,
         messages: [...prev.messages, { role: 'user', content: query }]
       }));
 
@@ -73,7 +77,8 @@ export const SearchProvider = ({ children }) => {
   const value = {
     ...searchData,
     setSearchData : (update) => setSearchData (prev => ({ ...prev, ...update })),
-    handleSearch
+    handleSearch,
+    clearActiveSearch: () => setSearchData(prev => ({ ...prev, hasActiveSearch: false, lastSearchQuery: '' }))
   };
 
   return (
