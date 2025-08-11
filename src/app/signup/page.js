@@ -87,8 +87,13 @@ export default function SignUp() {
       const data = await response.json();
 
       if (response.ok) {
-        // Success - redirect to login or dashboard
-        router.push('/signin?message=Account created successfully! Please sign in.');
+        // Success - show email verification message
+        if (data.emailSent) {
+          setMessage('Account created successfully! Please check your email to verify your account before signing in.');
+        } else {
+          setMessage('Account created successfully! Please check your email to verify your account. If you don\'t see the email, check your spam folder.');
+        }
+        // Don't redirect immediately, let user see the message
       } else {
         setErrors({ general: data.error || 'Sign up failed. Please try again.' });
       }
@@ -120,6 +125,11 @@ export default function SignUp() {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          {message && (
+            <div className="mb-4 bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-md text-sm">
+              {message}
+            </div>
+          )}
           <form className="space-y-6" onSubmit={handleSubmit}>
             {errors.general && (
               <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
