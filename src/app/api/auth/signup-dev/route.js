@@ -1,18 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-
-// Temporary in-memory storage for testing
-let users = [];
-
-const findUserByEmail = (email) => {
-  return users.find(user => user.email === email);
-};
-
-const addUser = (user) => {
-  users.push(user);
-  console.log('User added:', { id: user.id, email: user.email, firstName: user.firstName });
-  return user;
-};
+import { addUser, findUserByEmail } from '../../../utils/sharedStorage';
 
 export async function POST(request) {
   try {
