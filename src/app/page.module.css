@@ -186,3 +186,83 @@
   background-color: #fff;
   border-left: 1px solid #e0e0e0; */
 }
+
+/* Header Container with Search Bar and Profile Icon */
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  position: relative;
+  z-index: 10;
+}
+
+/* Profile Icon Styles */
+.profileIcon {
+  position: relative;
+  margin-left: 1rem;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+
+.profileAvatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profileAvatar:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profileInitial {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.profileTooltip {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  z-index: 1000;
+}
+
+.profileTooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  right: 10px;
+  border: 5px solid transparent;
+  border-bottom-color: #333;
+}
+
+.profileLink:hover .profileTooltip {
+  opacity: 1;
+  visibility: visible;
+}
