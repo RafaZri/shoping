@@ -1,7 +1,13 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { findUserByEmail } from '../../../utils/sharedStorage';
+
+// Global in-memory storage (shared across all routes)
+global.users = global.users || [];
+
+const findUserByEmail = (email) => {
+  return global.users.find(user => user.email === email);
+};
 
 // JWT secret (in production, use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';

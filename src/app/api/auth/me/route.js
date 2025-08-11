@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
-import { findUserById } from '../../../utils/sharedStorage';
+
+// Global in-memory storage (shared across all routes)
+global.users = global.users || [];
+
+const findUserById = (id) => {
+  return global.users.find(user => user.id === id);
+};
 
 // JWT secret (in production, use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
