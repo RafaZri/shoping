@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -15,6 +15,23 @@ export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const router = useRouter();
+
+  const resetForm = () => {
+    setFormData({
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+    setErrors({});
+    setMessage('');
+  };
+
+  // Reset form when component mounts
+  useEffect(() => {
+    resetForm();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -99,6 +116,8 @@ export default function SignUp() {
         } else {
           setMessage('Account created successfully! Please check your email to verify your account. If you don\'t see the email, check your spam folder.');
         }
+        // Reset form state
+        resetForm();
         // Redirect to signin after a short delay
         setTimeout(() => {
           router.push('/signin?message=Account created successfully! You can now sign in.');
