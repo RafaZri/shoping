@@ -133,7 +133,7 @@ export default function SignUp() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 overflow-hidden">
           {message && (
             <div className="mb-4 bg-green-50 border border-green-200 text-green-600 px-4 py-3 rounded-md text-sm">
               {message}
@@ -146,8 +146,8 @@ export default function SignUp() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-              <div className="w-full">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-4">
+              <div className="min-w-0">
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                   First name
                 </label>
@@ -170,7 +170,7 @@ export default function SignUp() {
                 </div>
               </div>
 
-              <div className="w-full">
+              <div className="min-w-0">
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
                   Last name
                 </label>
