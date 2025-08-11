@@ -1,11 +1,9 @@
 import { NextResponse } from 'next/server';
 import jwt from 'jsonwebtoken';
+import { findUserById } from '../../../utils/userStorage';
 
 // JWT secret (in production, use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
-
-// In-memory user storage (replace with database in production)
-let users = [];
 
 export async function GET(request) {
   try {
@@ -23,7 +21,7 @@ export async function GET(request) {
     const decoded = jwt.verify(token, JWT_SECRET);
     
     // Find user
-    const user = users.find(u => u.id === decoded.userId);
+    const user = findUserById(decoded.userId);
     
     if (!user) {
       return NextResponse.json(

@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
-
-// In-memory user storage (replace with database in production)
-let users = [];
+import { addUser } from '../../../utils/userStorage';
 
 export async function POST(request) {
   try {
@@ -17,7 +15,7 @@ export async function POST(request) {
     }
 
     // Check if email already exists
-    const existingUser = users.find(user => user.email === email);
+    const existingUser = await import('../../../utils/userStorage').then(m => m.findUserByEmail(email));
     if (existingUser) {
       return NextResponse.json(
         { error: 'Email already registered' },
@@ -44,7 +42,7 @@ export async function POST(request) {
     };
 
     // Store user (in production, save to database)
-    users.push(newUser);
+    addUser(newUser);
 
     // Return success (don't include password)
     const { password: _, ...userWithoutPassword } = newUser;
