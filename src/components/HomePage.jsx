@@ -21,19 +21,22 @@ const HomePage = () => {
         </p>
       </div>
       
-      <div className="w-full max-w-2xl mb-8 mx-auto">
+      <div className="w-full max-w-2xl mb-4 mx-auto">
         <SearchBar isHomePage={true} />
       </div>
       
-      <div className="text-center w-full max-w-2xl mx-auto">
-        <p className="text-sm text-gray-500 mb-2">
-          By using our service, you agree to our 
-          <Link href="/terms" className="text-blue-600 hover:underline mx-1">Terms of Service</Link> and 
-          <Link href="/privacy" className="text-blue-600 hover:underline mx-1">Privacy Policy</Link>
-        </p>
+      <div className="text-center w-full max-w-2xl mx-auto mb-6">
         <p className="text-xs text-gray-400">
           Already have an account? <Link href="/signin" className="text-blue-500 hover:text-blue-700 hover:underline">Sign in</Link> • 
           New here? <Link href="/signup" className="text-blue-500 hover:text-blue-700 hover:underline">Create account</Link>
+        </p>
+      </div>
+      
+      <div className="text-center w-full max-w-2xl mx-auto">
+        <p className="text-sm text-gray-500">
+          By using our service, you agree to our 
+          <Link href="/terms" className="text-blue-600 hover:underline mx-1">Terms of Service</Link> and 
+          <Link href="/privacy" className="text-blue-600 hover:underline mx-1">Privacy Policy</Link>
         </p>
       </div>
     </div>
