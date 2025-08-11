@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
+import { sendVerificationEmail } from '../../../utils/emailService';
 
 // In-memory user storage (replace with database in production)
 let users = [];
@@ -29,6 +31,10 @@ export async function POST(request) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
+    // Generate verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex');
+    const verificationExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
     // Create user
     const newUser = {
       id: Date.now().toString(),
@@ -37,6 +43,9 @@ export async function POST(request) {
       email,
       password: hashedPassword,
       createdAt: new Date().toISOString(),
+      isVerified: false,
+      verificationToken,
+      verificationExpiry: verificationExpiry.toISOString(),
       searchHistory: [],
       savedProducts: []
     };
@@ -44,13 +53,17 @@ export async function POST(request) {
     // Store user (in production, save to database)
     users.push(newUser);
 
+    // Send verification email
+    const emailResult = await sendVerificationEmail(email, verificationToken, firstName);
+
     // Return success (don't include password)
     const { password: _, ...userWithoutPassword } = newUser;
     
     return NextResponse.json(
       { 
-        message: 'User created successfully',
-        user: userWithoutPassword
+        message: 'Account created successfully! Please check your email to verify your account.',
+        user: userWithoutPassword,
+        emailSent: emailResult.success
       },
       { status: 201 }
     );

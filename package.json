@@ -17,6 +17,7 @@
     "cheerio": "^1.0.0",
     "jsonwebtoken": "^9.0.2",
     "next": "^14.0.0",
+    "nodemailer": "^7.0.5",
     "pg": "^8.13.1",
     "puppeteer": "^23.11.1",
     "puppeteer-core": "^24.2.0",
