@@ -77,8 +77,8 @@ export default function SignIn() {
       const data = await response.json();
 
       if (response.ok) {
-        // Success - redirect to dashboard or home
-        router.push('/dashboard');
+        // Success - redirect to homepage
+        router.push('/');
       } else {
         setErrors({ general: data.error || 'Sign in failed. Please check your credentials.' });
       }
