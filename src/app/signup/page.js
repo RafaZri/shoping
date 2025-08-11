@@ -39,6 +39,18 @@ export default function SignUp() {
   // Force re-render to prevent caching issues
   const [renderKey, setRenderKey] = useState(Date.now());
 
+  // Force hard refresh on component mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Force a hard refresh if this is the first load
+      const hasRefreshed = sessionStorage.getItem('signup-refreshed');
+      if (!hasRefreshed) {
+        sessionStorage.setItem('signup-refreshed', 'true');
+        window.location.reload();
+      }
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
