@@ -13,6 +13,7 @@ export default function SignUp() {
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -27,6 +28,10 @@ export default function SignUp() {
         ...prev,
         [name]: ''
       }));
+    }
+    // Clear success message when user starts typing
+    if (message) {
+      setMessage('');
     }
   };
 
@@ -69,6 +74,7 @@ export default function SignUp() {
     }
 
     setIsLoading(true);
+    setMessage(''); // Clear any previous messages
 
     try {
       const response = await fetch('/api/auth/signup-dev', {
