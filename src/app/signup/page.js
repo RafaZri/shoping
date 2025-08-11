@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+// Force cache refresh for this component
+export const dynamic = 'force-dynamic';
+
 export default function SignUp() {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -32,6 +35,9 @@ export default function SignUp() {
   useEffect(() => {
     resetForm();
   }, []);
+
+  // Force re-render to prevent caching issues
+  const [renderKey, setRenderKey] = useState(Date.now());
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -133,7 +139,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div key={renderKey} className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">
