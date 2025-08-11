@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-// In-memory user storage (replace with database in production)
-let users = [];
+import { findUserByEmail } from '../../../utils/userStorage';
 
 // JWT secret (in production, use environment variable)
 const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
@@ -21,7 +19,7 @@ export async function POST(request) {
     }
 
     // Find user
-    const user = users.find(u => u.email === email);
+    const user = findUserByEmail(email);
     if (!user) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
