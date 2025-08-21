@@ -77,8 +77,8 @@ export default function SignIn() {
       const data = await response.json();
 
       if (response.ok) {
-        // Success - redirect to homepage
-        router.push('/');
+        // Success - redirect to homepage with success message
+        router.push('/?message=Sign in successful! Welcome back.');
       } else {
         setErrors({ general: data.error || 'Sign in failed. Please check your credentials.' });
       }

@@ -17,3 +17,10 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* Global transparent background */
+body, html {
+  background-color: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

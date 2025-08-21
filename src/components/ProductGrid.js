@@ -33,9 +33,12 @@ const StarRating = ({ rating, maxRating = 5 }) => {
 };
 
 // ProductsGrid Component: Displays a grid of product cards
-const ProductsGrid = ({ products, onProductSelect }) => {
+const ProductsGrid = ({ products, onProductSelect, loadMoreProducts = [], hasMoreProducts = false }) => {
   const { currentLanguage } = useLanguage();
-  const [visibleProducts, setVisibleProducts] = useState(16); // Show 16 products initially (4 complete rows)
+  const { fetchNikeProducts } = useSearch();
+  const [visibleProducts, setVisibleProducts] = useState(8); // Show 8 products initially for ultra-fast loading
+  const [nikeProducts, setNikeProducts] = useState([]);
+  const [isLoadingNike, setIsLoadingNike] = useState(false);
   const containerRef = useRef(null);
 
   // Auto-scroll to products when new search results are loaded
@@ -54,14 +57,35 @@ const ProductsGrid = ({ products, onProductSelect }) => {
     return null;
   }
 
-  // Function to load more products
-  const loadMoreProducts = () => {
-    setVisibleProducts(prev => Math.min(prev + 4, products.length)); // Load 4 more products at a time (1 complete row)
+  // Function to handle load more button click
+  const handleLoadMore = async () => {
+    // If we haven't loaded Nike products yet and this is a relevant search, fetch them
+    if (nikeProducts.length === 0 && !isLoadingNike) {
+      const searchQuery = products[0]?.title || ''; // Get search context from first product
+      const isNikeRelevant = searchQuery.toLowerCase().includes('shoe') || 
+                            searchQuery.toLowerCase().includes('sneaker') || 
+                            searchQuery.toLowerCase().includes('nike') || 
+                            searchQuery.toLowerCase().includes('athletic') ||
+                            searchQuery.toLowerCase().includes('running') ||
+                            searchQuery.toLowerCase().includes('training') ||
+                            searchQuery.toLowerCase().includes('sport');
+      
+      if (isNikeRelevant) {
+        setIsLoadingNike(true);
+        const nikeResults = await fetchNikeProducts(searchQuery);
+        setNikeProducts(nikeResults);
+        setIsLoadingNike(false);
+      }
+    }
+    
+    // Always add more products to the existing list
+    setVisibleProducts(prev => prev + 4);
   };
 
-  // Get the products to display (limited by visibleProducts)
-  const displayedProducts = products.slice(0, visibleProducts);
-  const hasMoreProducts = visibleProducts < products.length;
+  // Combine Amazon products with Nike products and load more products
+  const allProducts = [...products, ...nikeProducts, ...loadMoreProducts];
+  const displayedProducts = allProducts.slice(0, visibleProducts);
+  const canLoadMore = visibleProducts < allProducts.length || isLoadingNike;
 
   // Function: Generate product information
   const getProductDetails = (product) => {
@@ -105,26 +129,9 @@ const ProductsGrid = ({ products, onProductSelect }) => {
       return null;
     };
 
-    // Generate best for description
-    let bestFor = getTranslation('generalUse', currentLanguage);
-    if (isShoe) {
-      const activities = ['running', 'training', 'basketball', 'soccer', 'tennis', 'golf', 'hiking', 'walking'];
-      const foundActivity = activities.find(activity => title.includes(activity));
-      bestFor = foundActivity ? `${foundActivity.charAt(0).toUpperCase() + foundActivity.slice(1)}` : getTranslation('athleticActivities', currentLanguage);
-    } else if (isGamingLaptop) {
-      bestFor = getTranslation('gamingPerformance', currentLanguage);
-    } else if (isLaptop) {
-      bestFor = getTranslation('workProductivity', currentLanguage);
-    } else if (isElectronics) {
-      bestFor = getTranslation('dailyUse', currentLanguage);
-    } else if (isClothing) {
-      bestFor = getTranslation('casualWear', currentLanguage);
-    }
-
     return {
-      rating: product.rating || Math.floor(Math.random() * 2) + 4, // 4-5 stars
-      reviews: product.reviews || Math.floor(Math.random() * 1000) + 100,
-      bestFor,
+      rating: product.rating || null, // Only real ratings, no fake data
+      reviews: product.reviews || null, // Only real reviews, no fake data
       discount: calculateDiscount(product.price, product.oldPrice, product.discountPercentage)
     };
   };
@@ -136,7 +143,7 @@ const ProductsGrid = ({ products, onProductSelect }) => {
           const details = getProductDetails(item);
 
           return (
-            <div key={item.id || index} className={styles.productCard}>
+            <div key={`${item.company}-${item.id || index}-${item.title?.slice(0, 20)}`} className={styles.productCard}>
               {/* Product Image */}
               <div className={styles.imageContainer}>
                 <a
@@ -166,13 +173,15 @@ const ProductsGrid = ({ products, onProductSelect }) => {
                   <h4 className={styles.productTitle}>{item.title}</h4>
                 </a>
 
-                {/* Rating */}
-                <div className={styles.ratingContainer}>
-                  <StarRating rating={details.rating} />
-                  <span className={styles.reviewCount}>
-                    ({details.reviews?.toLocaleString() || '0'})
-                  </span>
-                </div>
+                {/* Rating - Only show if real data exists */}
+                {details.rating && details.reviews && (
+                  <div className={styles.ratingContainer}>
+                    <StarRating rating={details.rating} />
+                    <span className={styles.reviewCount}>
+                      ({details.reviews.toLocaleString()})
+                    </span>
+                  </div>
+                )}
 
                 {/* Price Container */}
                 <div className={styles.priceContainer}>
@@ -185,13 +194,7 @@ const ProductsGrid = ({ products, onProductSelect }) => {
                   )}
                 </div>
 
-                {/* Quick Specs */}
-                <div className={styles.quickSpecs}>
-                  <div className={styles.specItem}>
-                    <span className={styles.specLabel}>{getTranslation('bestFor', currentLanguage)}:</span>
-                    <span className={styles.specValue}>{details.bestFor}</span>
-                  </div>
-                </div>
+
               </div>
             </div>
           );
@@ -199,11 +202,11 @@ const ProductsGrid = ({ products, onProductSelect }) => {
       </div>
 
       {/* Load More Button */}
-      {hasMoreProducts && (
+      {canLoadMore && (
         <div className={styles.loadMoreContainer}>
           <button
             className={styles.loadMoreButton}
-            onClick={loadMoreProducts}
+            onClick={handleLoadMore}
           >
             {getTranslation('loadMore', currentLanguage)}
           </button>

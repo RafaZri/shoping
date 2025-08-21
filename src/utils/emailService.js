@@ -83,7 +83,6 @@ export const sendVerificationEmail = async (email, verificationToken, firstName)
     };
 
     const result = await transporter.sendMail(mailOptions);
-    console.log('Verification email sent:', result.messageId);
     return { success: true, messageId: result.messageId };
     
   } catch (error) {
@@ -148,7 +147,6 @@ export const sendPasswordResetEmail = async (email, resetToken, firstName) => {
     };
 
     const result = await transporter.sendMail(mailOptions);
-    console.log('Password reset email sent:', result.messageId);
     return { success: true, messageId: result.messageId };
     
   } catch (error) {

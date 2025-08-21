@@ -4,22 +4,24 @@
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: transparent;
 }
 
-/* Left Container: Empty for now */
-/* .leftContainer {
-  flex: 1;
-  border-right: 1px solid #e0e0e0;
-} */
+
+
+
+
+
 
 /* Middle Container: Search Bar, AI Answers, and Products */
 .middleContainer {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  
+  padding: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Products Column */
@@ -29,6 +31,13 @@
   scrollbar-width: none; /* Masque la barre pour Firefox */
   -ms-overflow-style: none; /* Enable scrolling */
   padding-top: 100px; /* Add padding to account for the search bar's height */
+}
+
+/* Mobile adjustments for products column */
+@media (max-width: 768px) {
+  .productsColumn {
+    padding-top: 80px; /* Reduced padding since search bar moved up more */
+  }
 }
 
 /* User Message Styling */
@@ -97,6 +106,13 @@
 .copyButton svg {
   width: 16px;
   height: 16px;
+}
+
+/* Search Summary Alignment */
+.searchSummary {
+  max-width: 1400px;
+  margin: 0 auto 1rem auto;
+  padding: 0 2rem;
 }
 
 /* AI Message Styling */
@@ -178,25 +194,658 @@
   margin-top: 10px;
 }
 
-/* Right Container: Chat Section */
-.rightContainer {
-  /* flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-left: 1px solid #e0e0e0; */
-}
+
 
 /* Top Bar with Language Switcher and Profile Icon */
 .topBar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-end;
-  gap: 0.75rem;
   position: fixed;
   top: 1rem;
   right: 1rem;
+  z-index: 1001; /* Higher than search bar */
+}
+
+/* Mobile adjustments for top bar */
+@media (max-width: 768px) {
+  .topBar {
+    top: 0.25rem;
+    right: 0.5rem;
+    z-index: 1002; /* Even higher to ensure visibility */
+  }
+}
+
+.rightControls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+/* Mobile adjustments for right controls */
+@media (max-width: 768px) {
+  .rightControls {
+    gap: 0.25rem; /* Much tighter spacing on mobile */
+  }
+}
+
+/* New Chat Container Styles */
+.newChatContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+}
+
+/* Mobile adjustments for icon containers */
+@media (max-width: 768px) {
+  .newChatContainer,
+  .savedProductsContainer,
+  .searchHistoryContainer,
+  .profileContainer,
+  .signInContainer,
+  .signUpContainer {
+    padding: 0.375rem; /* Same padding for all containers */
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.newChatButton {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.125rem 0.375rem;
+  min-width: 1.5rem;
+  min-height: 1.25rem;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateY(0);
+}
+
+/* Mobile adjustments for all icon buttons */
+@media (max-width: 768px) {
+  .newChatButton,
+  .savedProductsButton,
+  .searchHistoryButton,
+  .profileLink,
+  .signInButton,
+  .signUpButton {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Make all SVG icons the same size on mobile */
+  .newChatButton svg,
+  .savedProductsButton svg,
+  .searchHistoryButton svg,
+  .profileLink svg,
+  .signInButton svg,
+  .signUpButton svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+.newChatButton:hover {
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
+}
+
+.newChatTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: none !important;
+}
+
+.newChatTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.newChatButton:hover .newChatTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Saved Products Container Styles */
+.savedProductsContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.savedProductsButton {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.125rem 0.375rem;
+  min-width: 1.5rem;
+  min-height: 1.25rem;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateY(0);
+}
+
+.savedProductsButton:hover {
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
+}
+
+.savedProductsTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: none !important;
+}
+
+.savedProductsTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.savedProductsButton:hover .savedProductsTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Search History Container Styles */
+.searchHistoryContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.searchHistoryButton {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.125rem 0.375rem;
+  min-width: 1.5rem;
+  min-height: 1.25rem;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  transform: translateY(0);
+}
+
+.searchHistoryButton:hover {
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
+}
+
+.searchHistoryTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: none !important;
+}
+
+.searchHistoryTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.searchHistoryButton:hover .searchHistoryTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Search History Dropdown Styles */
+.searchHistoryDropdown {
+  position: fixed;
+  top: 8rem;
+  right: 1rem;
+  width: 280px;
+  max-height: 400px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #e5e7eb;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.searchHistoryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(249, 250, 251, 0.8);
+}
+
+.searchHistoryTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #374151;
+}
+
+.searchHistoryList {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+.searchHistoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.25rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.searchHistoryItem:hover {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.searchHistoryContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.searchQuery {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0 0 0.25rem 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchDate {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.searchHistoryActions {
+  display: flex;
+  gap: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.searchHistoryItem:hover .searchHistoryActions {
+  opacity: 1;
+}
+
+.searchAgainButton,
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.searchAgainButton:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+}
+
+.copyButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #374151;
+}
+
+.noSearchHistory {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+/* Auth Icons Container Styles */
+.authIconsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mobile adjustments for auth icons container */
+@media (max-width: 768px) {
+  .authIconsContainer {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+/* Sign In Container Styles */
+.signInContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* Sign Up Container Styles */
+.signUpContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.signInButton {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.25rem 0.5rem;
+  min-width: auto;
+  min-height: 1.25rem;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none;
+  transform: translateY(0);
+}
+
+.signInButton:hover {
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
+}
+
+.signInText {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Mobile adjustments for sign in text */
+@media (max-width: 768px) {
+  .signInText {
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+}
+
+.signInTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: none !important;
+}
+
+.signInTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.signInButton:hover .signInTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.signUpButton {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.25rem 0.5rem;
+  min-width: auto;
+  min-height: 1.25rem;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: none;
+  line-height: 1;
+  letter-spacing: 0;
+  text-decoration: none;
+  transform: translateY(0);
+}
+
+.signUpButton:hover {
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
+}
+
+.signUpText {
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+/* Mobile adjustments for sign up text */
+@media (max-width: 768px) {
+  .signUpText {
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+}
+
+.signUpTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: none !important;
+}
+
+.signUpTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.signUpButton:hover .signUpTooltip {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Profile Icon Styles */
@@ -212,61 +861,82 @@
   position: relative;
 }
 
+.profileContainer {
+  display: flex;
+  align-items: center;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
+  border-radius: 6px;
+  border: 1px solid #f59e0b;
+  backdrop-filter: blur(10px);
+}
+
 .profileAvatar {
-  width: 28px;
-  height: 28px;
-  background: #111;
-  border-radius: 50%;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  box-shadow: none;
+  border: none;
+  position: relative;
+  backdrop-filter: none;
+  padding: 0.125rem 0.375rem;
+  min-width: 1.5rem;
+  min-height: 1.25rem;
 }
 
 .profileAvatar:hover {
-  background: #374151;
-  transform: scale(1.05);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  background: transparent;
+  color: #374151;
+  transform: translateY(-2px);
 }
 
 .profileInitial {
-  color: white;
+  color: #6b7280;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   line-height: 1;
+  letter-spacing: 0;
 }
 
 .profileTooltip {
   position: absolute;
-  top: 100%;
-  right: 0;
-  background: #111;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
   color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
   font-size: 11px;
+  font-weight: 500;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
   transition: all 0.2s ease;
-  margin-top: 6px;
+  margin-right: 8px;
   z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .profileTooltip::before {
   content: '';
   position: absolute;
-  bottom: 100%;
-  right: 8px;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
   border: 4px solid transparent;
-  border-bottom-color: #111;
+  border-left-color: #1e293b;
 }
 
 .profileLink:hover .profileTooltip {
   opacity: 1;
   visibility: visible;
 }
+

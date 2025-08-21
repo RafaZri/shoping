@@ -15,7 +15,7 @@ import puppeteer from 'puppeteer'; // Import Puppeteer for browser automation
 export async function scrapeProductsPuppeteer(query) {
   let browser;
   try {
-    console.log(`Starting Nike scraper for query: "${query}"`);
+  
     
     // Launch a new browser instance
     browser = await puppeteer.launch({
@@ -26,35 +26,35 @@ export async function scrapeProductsPuppeteer(query) {
 
     // Navigate to Nike's search results page for the given query
     const url = `https://www.nike.com/w?q=${encodeURIComponent(query)}`;
-    console.log(`Navigating to: ${url}`);
+    
     await page.goto(url, { waitUntil: 'networkidle2' }); // Wait until the page is fully loaded
 
-    // Wait for product cards to appear (with a timeout of 6 seconds)
-    console.log('Waiting for product cards...');
-    await page.waitForSelector('.product-card', { timeout: 6000 }).catch((err) => {
-      console.log('Timeout waiting for .product-card selector:', err.message);
+    // Wait for product cards to appear (with a timeout of 3 seconds for faster loading)
+    
+    await page.waitForSelector('.product-card', { timeout: 3000 }).catch((err) => {
+      
     });
     
-    // Wait a bit more for dynamic content to load
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Wait less for dynamic content to load
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     // Check if we can find any product cards
     const cardCount = await page.evaluate(() => {
       return document.querySelectorAll('.product-card').length;
     });
-    console.log(`Found ${cardCount} product cards on the page`);
+    
 
     // Extract product data from the page
     const products = await page.evaluate(() => {
       const items = []; // Array to store scraped products
-      console.log('Starting product extraction...');
+
 
       // Iterate over each product card
       const productCards = document.querySelectorAll('.product-card');
-      console.log(`Found ${productCards.length} product cards`);
+      
       
       productCards.forEach((el, i) => {
-        if (i >= 16) return; // Limit results to 16 products
+        if (i >= 8) return; // Limit results to 8 products for faster loading
 
         // Extract product details using DOM selectors
         const titleEl = el.querySelector('.product-card__title');
@@ -68,7 +68,7 @@ export async function scrapeProductsPuppeteer(query) {
         // Extract and clean product price
         const price = priceEl ? priceEl.textContent.trim() : '';
 
-        console.log(`Product ${i + 1}: Title="${title}", Price="${price}"`);
+        
 
         // Extract old price using the correct selector
         const oldPriceEl = el.querySelector('.product-price.is--striked-out');
@@ -81,7 +81,7 @@ export async function scrapeProductsPuppeteer(query) {
           const originalPrice = parseFloat(oldPrice.replace(/[$,]/g, ''));
           if (originalPrice > currentPrice) {
             discountPercentage = Math.round(((originalPrice - currentPrice) / originalPrice) * 100).toString();
-            console.log(`Calculated discount: ${discountPercentage}% (${oldPrice} -> ${price})`);
+  
           }
         }
 
@@ -107,6 +107,30 @@ export async function scrapeProductsPuppeteer(query) {
           finalImg = 'https://www.nike.com/favicon.ico'; // Fallback image
         }
 
+        // Try to extract rating and reviews from Nike product cards
+        let rating = null;
+        let reviews = null;
+        
+        // Look for rating elements on search results page
+        const ratingEl = el.querySelector('[data-testid="rating"], .rating, .product-rating, .product-card__rating');
+        if (ratingEl) {
+          const ratingText = ratingEl.textContent;
+          const ratingMatch = ratingText.match(/(\d+(?:\.\d+)?)/);
+          if (ratingMatch) {
+            rating = parseFloat(ratingMatch[1]);
+          }
+        }
+        
+        // Look for review count elements on search results page
+        const reviewsEl = el.querySelector('[data-testid="review-count"], .review-count, .product-reviews, .product-card__reviews');
+        if (reviewsEl) {
+          const reviewsText = reviewsEl.textContent;
+          const reviewsMatch = reviewsText.replace(/[^\d]/g, '');
+          if (reviewsMatch && reviewsMatch.length > 0) {
+            reviews = parseInt(reviewsMatch);
+          }
+        }
+
         // Add product to the array if all required fields are present
         if (title && price && finalUrl) {
           items.push({
@@ -118,18 +142,19 @@ export async function scrapeProductsPuppeteer(query) {
             url: finalUrl, // Product page URL
             image: finalImg || 'https://www.nike.com/favicon.ico', // Product image URL
             company: 'Nike', // Hardcoded company name
+            rating: rating, // Real rating if found
+            reviews: reviews, // Real review count if found
           });
-          console.log(`Added product: ${title} - ${price}${oldPrice ? ` (was ${oldPrice})` : ''}${discountPercentage ? ` (${discountPercentage}% off)` : ''}`);
+
         } else {
-          console.log(`Skipped product ${i + 1}: title=${!!title}, price=${!!price}, url=${!!finalUrl}, img=${!!finalImg}`);
+          
         }
       });
 
-      console.log(`Total products found: ${items.length}`);
+      
       return items; // Return the array of scraped products
     });
 
-    console.log(`Nike scraper completed. Found ${products.length} products.`);
     return products; // Return the scraped products to the caller
   } catch (err) {
     // Log any errors and return an empty array

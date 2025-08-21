@@ -27,11 +27,18 @@ export const AuthProvider = ({ children }) => {
         const data = await response.json();
         setUser(data.user);
       } else {
-        setUser(null);
+        // Only set user to null if we don't already have a user
+        // This prevents overriding a valid user state during redirects
+        if (!user) {
+          setUser(null);
+        }
       }
     } catch (error) {
       console.error('Auth check failed:', error);
-      setUser(null);
+      // Only set user to null if we don't already have a user
+      if (!user) {
+        setUser(null);
+      }
     } finally {
       setLoading(false);
     }
@@ -47,13 +54,37 @@ export const AuthProvider = ({ children }) => {
         body: JSON.stringify({ email, password }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
         setUser(data.user);
+        setLoading(false);
         return { success: true, user: data.user };
       } else {
-        const error = await response.json();
-        return { success: false, error: error.error };
+        return { success: false, error: data.error };
+      }
+    } catch (error) {
+      console.error('Signin network error:', error);
+      return { success: false, error: 'Network error' };
+    }
+  };
+
+  const signUp = async (firstName, lastName, email, password) => {
+    try {
+      const response = await fetch('/api/auth/signup-dev', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, lastName, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        return { success: true, message: data.message };
+      } else {
+        return { success: false, error: data.error };
       }
     } catch (error) {
       return { success: false, error: 'Network error' };
@@ -62,21 +93,33 @@ export const AuthProvider = ({ children }) => {
 
   const signOut = async () => {
     try {
-      await fetch('/api/auth/signout', {
+      const response = await fetch('/api/auth/signout', {
         method: 'POST',
       });
-      setUser(null);
+      
+      if (response.ok) {
+        setUser(null);
+        setLoading(false);
+      } else {
+        console.error('Signout failed:', response.status);
+      }
     } catch (error) {
       console.error('Signout error:', error);
     }
+  };
+
+  const refreshAuth = async () => {
+    await checkAuthStatus();
   };
 
   const value = {
     user,
     loading,
     signIn,
+    signUp,
     signOut,
     checkAuthStatus,
+    refreshAuth,
   };
 
   return (

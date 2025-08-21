@@ -28,7 +28,7 @@ EMAIL_PASSWORD=your-email-password
    ```bash
    EMAIL_USER=jawherbuz@yahoo.com
    EMAIL_PASSWORD=your-yahoo-app-password
-   JWT_SECRET=your-secret-key-here
+   JWT_SECRET=your-jwt-secret-here
    NEXT_PUBLIC_BASE_URL=http://localhost:3000
    ```
 

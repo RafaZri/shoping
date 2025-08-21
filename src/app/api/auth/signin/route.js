@@ -9,8 +9,11 @@ const findUserByEmail = (email) => {
   return global.users.find(user => user.email === email);
 };
 
-// JWT secret (in production, use environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+// JWT secret (required environment variable)
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required');
+}
 
 export async function POST(request) {
   try {

@@ -3,35 +3,50 @@ import './RightSidebar.css';
 
 const RightSidebar = () => {
   useEffect(() => {
-    const body = document.querySelector("body");
-    const sidebar = body.querySelector(".sidebar");
-    const rightSidebar = body.querySelector(".right-sidebar");
-    const toggle = body.querySelector(".toggle");
-    const rightToggle = rightSidebar.querySelector(".toggle");
-    const searchBtn = body.querySelector(".search-box");
-    const modeSwitch = body.querySelector(".toggle-switch");
-    const modeText = body.querySelector(".mode-text") || { innerHTML: "" };
+    // Add a small delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const body = document.querySelector("body");
+      if (!body) return;
 
-    const handleToggle = () => sidebar.classList.toggle("close");
-    const handleRightToggle = () => rightSidebar.classList.toggle("close");
-    const handleSearch = () => sidebar.classList.remove("close");
-    const handleModeSwitch = () => {
-      body.classList.toggle("dark");
-      modeText.innerText = body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
-    };
+      const sidebar = body.querySelector(".sidebar");
+      const rightSidebar = body.querySelector(".right-sidebar");
+      const toggle = body.querySelector(".toggle");
+      const rightToggle = rightSidebar ? rightSidebar.querySelector(".toggle") : null;
+      const searchBtn = body.querySelector(".search-box");
+      const modeSwitch = body.querySelector(".toggle-switch");
+      const modeText = body.querySelector(".mode-text") || { innerHTML: "" };
 
-    if (toggle) toggle.addEventListener("click", handleToggle);
-    if (rightToggle) rightToggle.addEventListener("click", handleRightToggle);
-    if (searchBtn) searchBtn.addEventListener("click", handleSearch);
-    if (modeSwitch) modeSwitch.addEventListener("click", handleModeSwitch);
+      const handleToggle = () => {
+        if (sidebar) sidebar.classList.toggle("close");
+      };
+      const handleRightToggle = () => {
+        if (rightSidebar) rightSidebar.classList.toggle("close");
+      };
+      const handleSearch = () => {
+        if (sidebar) sidebar.classList.remove("close");
+      };
+      const handleModeSwitch = () => {
+        if (body) body.classList.toggle("dark");
+        if (modeText && modeText.innerText !== undefined) {
+          modeText.innerText = body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+        }
+      };
 
-    // Nettoyage des écouteurs d'événements
-    return () => {
-      if (toggle) toggle.removeEventListener("click", handleToggle);
-      if (rightToggle) rightToggle.removeEventListener("click", handleRightToggle);
-      if (searchBtn) searchBtn.removeEventListener("click", handleSearch);
-      if (modeSwitch) modeSwitch.removeEventListener("click", handleModeSwitch);
-    };
+      if (toggle) toggle.addEventListener("click", handleToggle);
+      if (rightToggle) rightToggle.addEventListener("click", handleRightToggle);
+      if (searchBtn) searchBtn.addEventListener("click", handleSearch);
+      if (modeSwitch) modeSwitch.addEventListener("click", handleModeSwitch);
+
+      // Nettoyage des écouteurs d'événements
+      return () => {
+        if (toggle) toggle.removeEventListener("click", handleToggle);
+        if (rightToggle) rightToggle.removeEventListener("click", handleRightToggle);
+        if (searchBtn) searchBtn.removeEventListener("click", handleSearch);
+        if (modeSwitch) modeSwitch.removeEventListener("click", handleModeSwitch);
+      };
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (

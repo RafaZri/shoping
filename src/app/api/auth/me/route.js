@@ -8,8 +8,11 @@ const findUserById = (id) => {
   return global.users.find(user => user.id === id);
 };
 
-// JWT secret (in production, use environment variable)
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+// JWT secret (required environment variable)
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET environment variable is required');
+}
 
 export async function GET(request) {
   try {
@@ -34,6 +37,14 @@ export async function GET(request) {
         { error: 'User not found' },
         { status: 404 }
       );
+    }
+
+    // Initialize searchHistory and savedProducts if they don't exist (for existing users)
+    if (!user.searchHistory) {
+      user.searchHistory = [];
+    }
+    if (!user.savedProducts) {
+      user.savedProducts = [];
     }
 
     // Return user data (without password)

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Force cache refresh for this component
 export const dynamic = 'force-dynamic';
@@ -18,6 +19,7 @@ export default function SignUp() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const router = useRouter();
+  const { signUp } = useAuth();
 
   const resetForm = () => {
     setFormData({
@@ -36,20 +38,7 @@ export default function SignUp() {
     resetForm();
   }, []);
 
-  // Force re-render to prevent caching issues
-  const [renderKey, setRenderKey] = useState(Date.now());
 
-  // Force hard refresh on component mount
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Force a hard refresh if this is the first load
-      const hasRefreshed = sessionStorage.getItem('signup-refreshed');
-      if (!hasRefreshed) {
-        sessionStorage.setItem('signup-refreshed', 'true');
-        window.location.reload();
-      }
-    }
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -112,36 +101,18 @@ export default function SignUp() {
     setMessage(''); // Clear any previous messages
 
     try {
-      const response = await fetch('/api/auth/signup-dev', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          password: formData.password
-        }),
-      });
+      const result = await signUp(
+        formData.firstName,
+        formData.lastName,
+        formData.email,
+        formData.password
+      );
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Success - show email verification message
-        if (data.emailSent) {
-          setMessage('Account created successfully! Please check your email to verify your account before signing in.');
-        } else {
-          setMessage('Account created successfully! Please check your email to verify your account. If you don\'t see the email, check your spam folder.');
-        }
-        // Reset form state
-        resetForm();
-        // Redirect to homepage after a short delay
-        setTimeout(() => {
-          router.push('/?message=Account created successfully! You can now sign in.');
-        }, 2000);
+      if (result.success) {
+        // Success - redirect to signin page
+        router.push('/signin?message=Account created successfully! You can now sign in.');
       } else {
-        setErrors({ general: data.error || 'Sign up failed. Please try again.' });
+        setErrors({ general: result.error || 'Sign up failed. Please try again.' });
       }
     } catch (error) {
       setErrors({ general: 'Network error. Please try again.' });
@@ -151,7 +122,7 @@ export default function SignUp() {
   };
 
   return (
-    <div key={renderKey} className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="text-center">
           <Link href="/" className="text-blue-600 hover:text-blue-800 text-sm">

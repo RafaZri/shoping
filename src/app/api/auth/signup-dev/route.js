@@ -10,7 +10,6 @@ const findUserByEmail = (email) => {
 
 const addUser = (user) => {
   global.users.push(user);
-  console.log('User added:', { id: user.id, email: user.email, firstName: user.firstName });
   return user;
 };
 

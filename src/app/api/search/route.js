@@ -1,5 +1,6 @@
 import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper';
 import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer';
+import jwt from 'jsonwebtoken';
 
 // Basic rate limiting
 const rateLimitStore = new Map();
@@ -64,76 +65,94 @@ function processQuery(query) {
   };
 }
 
-// Commercial-grade product scoring system with strict category filtering
+// Enhanced product scoring system with improved accuracy
 function scoreProduct(product, queryInfo) {
   let score = 0;
   const titleLower = product.title.toLowerCase();
   const description = (product.description || '').toLowerCase();
   const fullText = `${titleLower} ${description}`;
+  const queryLower = queryInfo.originalQuery.toLowerCase();
+  
+  // EXACT PHRASE MATCH (Highest Priority - 100 points)
+  if (titleLower.includes(queryLower)) {
+    score += 100;
+  }
+  
+  // BRAND-SPECIFIC SEARCH BOOST (Massive boost for brand searches)
+  const majorBrands = ['nike', 'adidas', 'puma', 'reebok', 'under armour', 'asics', 'new balance', 'converse', 'vans', 'skechers', 'brooks', 'saucony', 'hoka', 'on running'];
+  const detectedBrand = majorBrands.find(brand => queryLower.includes(brand));
+  
+  if (detectedBrand && titleLower.includes(detectedBrand)) {
+    score += 80; // Massive brand boost
+  }
+  
+  // EXACT WORD MATCHES (High Priority - 30 points each)
+  queryInfo.processedWords.forEach(word => {
+    if (titleLower.includes(word)) score += 30;
+    if (fullText.includes(word)) score += 15;
+  });
+  
+  // BRAND MATCHING (Enhanced)
+  queryInfo.brands.forEach(brand => {
+    if (titleLower.includes(brand)) score += 25;
+    if (fullText.includes(brand)) score += 12;
+  });
+  
+  // CATEGORY MATCHING (Enhanced)
+  queryInfo.categories.forEach(category => {
+    if (titleLower.includes(category)) score += 20;
+    if (fullText.includes(category)) score += 10;
+  });
+  
+  // PARTIAL WORD MATCHES (Medium Priority - 10 points each)
+  queryInfo.processedWords.forEach(word => {
+    if (word.length > 3) { // Only for words longer than 3 characters
+      const partialMatches = titleLower.split(' ').filter(titleWord => 
+        titleWord.includes(word) || word.includes(titleWord)
+      );
+      score += partialMatches.length * 10;
+    }
+  });
   
   // STRICT CATEGORY FILTERING - Reject products that don't match the search category
   if (queryInfo.isElectronics) {
     const electronicKeywords = ['laptop', 'computer', 'pc', 'desktop', 'phone', 'smartphone', 'tablet', 'headphone', 'earbud', 'camera', 'gaming', 'rtx', 'gtx', 'intel', 'amd', 'ryzen', 'core', 'processor', 'cpu', 'gpu', 'graphics', 'xps', 'macbook', 'dell', 'hp', 'lenovo', 'asus', 'acer', 'msi', 'razer', 'monitor', 'keyboard', 'mouse', 'speaker', 'microphone'];
     const hasElectronicKeyword = electronicKeywords.some(keyword => fullText.includes(keyword));
     
-    // Reject non-electronic products
-    if (!hasElectronicKeyword) return 0;
+    if (!hasElectronicKeyword) return 0; // Reject non-electronics
     
-    // Heavy penalty for clothing/accessories in electronics searches
     const clothingKeywords = ['shirt', 'pants', 'jacket', 'dress', 'hoodie', 'sweater', 'shorts', 't-shirt', 'tank', 'leggings', 'joggers', 'track', 'sportswear', 'backpack', 'bag', 'shoes', 'sneakers', 'duffel', 'tote', 'purse', 'wallet'];
     const hasClothingKeyword = clothingKeywords.some(keyword => fullText.includes(keyword));
-    if (hasClothingKeyword) return 0; // Completely reject clothing in electronics searches
+    if (hasClothingKeyword) return 0; // Reject clothing in electronics searches
   }
   
   if (queryInfo.isClothing) {
     const clothingKeywords = ['shirt', 'pants', 'jacket', 'dress', 'hoodie', 'sweater', 'shorts', 't-shirt', 'tank', 'leggings', 'joggers', 'track', 'sportswear', 'backpack', 'bag', 'shoes', 'sneakers', 'duffel', 'tote', 'purse', 'wallet', 'clothing', 'apparel'];
     const hasClothingKeyword = clothingKeywords.some(keyword => fullText.includes(keyword));
     
-    // Reject non-clothing products
-    if (!hasClothingKeyword) return 0;
+    if (!hasClothingKeyword) return 0; // Reject non-clothing
     
-    // Heavy penalty for electronics in clothing searches
     const electronicKeywords = ['laptop', 'computer', 'pc', 'desktop', 'phone', 'smartphone', 'tablet', 'headphone', 'earbud', 'camera', 'gaming', 'rtx', 'gtx', 'intel', 'amd', 'ryzen', 'core', 'processor', 'cpu', 'gpu', 'graphics'];
     const hasElectronicKeyword = electronicKeywords.some(keyword => fullText.includes(keyword));
-    if (hasElectronicKeyword) return 0; // Completely reject electronics in clothing searches
+    if (hasElectronicKeyword) return 0; // Reject electronics in clothing searches
   }
   
-  // Exact word matches (highest priority)
-  queryInfo.processedWords.forEach(word => {
-    if (titleLower.includes(word)) score += 20;
-    if (description.includes(word)) score += 10;
-  });
-  
-  // Brand matching
-  queryInfo.brands.forEach(brand => {
-    if (titleLower.includes(brand)) score += 15;
-    if (description.includes(brand)) score += 8;
-  });
-  
-  // Category matching
-  queryInfo.categories.forEach(category => {
-    if (titleLower.includes(category)) score += 12;
-    if (description.includes(category)) score += 6;
-  });
-  
-  // Price-based scoring (prefer products with prices)
+  // QUALITY INDICATORS (Bonus points)
   if (product.price && product.price !== 'N/A') {
     score += 5;
   }
   
-  // Rating-based scoring
   if (product.rating && product.rating > 0) {
-    score += Math.min(product.rating * 2, 10); // Max 10 points for 5-star rating
+    score += Math.min(product.rating * 2, 10);
   }
   
-  // Review count scoring
   if (product.reviews && product.reviews > 0) {
-    score += Math.min(Math.log10(product.reviews) * 2, 5); // Max 5 points for high review counts
+    score += Math.min(Math.log10(product.reviews) * 2, 5);
   }
   
-  // Company preference (Nike for Nike searches, Amazon for general)
+  // COMPANY PREFERENCE
   if (queryInfo.isNikeRelated && product.company.toLowerCase().includes('nike')) {
-    score += 10;
+    score += 15;
   }
   
   return score;
@@ -218,50 +237,115 @@ export async function POST(req) {
         // Process the query
         const queryInfo = processQuery(query);
         
-        // Run both scrapers for comprehensive results
-        const [amazonResults, nikeResults] = await Promise.allSettled([
-          scrapeProductsCheerio(query),
-          scrapeProductsPuppeteer(query)
-        ]);
-
-        const amazon = amazonResults.status === 'fulfilled' ? amazonResults.value : [];
-        const nike = nikeResults.status === 'fulfilled' ? nikeResults.value : [];
-        const error = {
-          amazon: amazonResults.status === 'rejected' ? amazonResults.reason.message : null,
-          nike: nikeResults.status === 'rejected' ? nikeResults.reason.message : null
-        };
+        // Ultra-fast loading: Start with Amazon first, Nike in background
+        const amazonResults = await scrapeProductsCheerio(query);
+        const amazon = amazonResults || [];
+        const amazonError = null;
         
-        // Score all products
+        // Quick scoring for immediate display
         const scoredAmazon = amazon.map(product => ({
           ...product,
           score: scoreProduct(product, queryInfo)
         })).filter(product => product.score > 0).sort((a, b) => b.score - a.score);
         
-        const scoredNike = nike.map(product => ({
-          ...product,
-          score: scoreProduct(product, queryInfo)
-        })).filter(product => product.score > 0).sort((a, b) => b.score - a.score);
+        // Get first 8 Amazon products for ultra-fast display
+        const initialAmazonProducts = scoredAmazon.slice(0, 8).map(({ score, ...product }) => product);
         
-        // Combine results intelligently
-        let allProducts = [];
+        // Run Nike scraper in background (non-blocking)
+        const nikePromise = scrapeProductsPuppeteer(query).catch(err => {
+          console.error('Nike scraper error:', err);
+          return [];
+        });
         
-        // For Nike-specific searches, prioritize Nike results
-        if (queryInfo.isNikeRelated && scoredNike.length > 0) {
-          allProducts = [...scoredNike.slice(0, 12), ...scoredAmazon.slice(0, 4)];
+        // Return Amazon results immediately, Nike will be processed later
+        const nike = [];
+        const nikeError = null;
+        const scoredNike = [];
+        
+        // Determine if Nike products are relevant for this search
+        const isNikeRelevant = queryInfo.isNikeRelated || 
+          query.toLowerCase().includes('shoe') || 
+          query.toLowerCase().includes('sneaker') || 
+          query.toLowerCase().includes('nike') || 
+          query.toLowerCase().includes('athletic') ||
+          query.toLowerCase().includes('running') ||
+          query.toLowerCase().includes('training') ||
+          query.toLowerCase().includes('sport');
+        
+        // Prepare remaining products for "Load More"
+        const remainingAmazonProducts = scoredAmazon.slice(8).map(({ score, ...product }) => product);
+        const nikeProducts = []; // Will be populated later via separate API call
+        
+        // Combine all products for "Load More" (Nike priority if relevant)
+        let loadMoreProducts = [];
+        if (isNikeRelevant && nikeProducts.length > 0) {
+          loadMoreProducts = [...nikeProducts, ...remainingAmazonProducts];
         } else {
-          // For general searches, mix results based on scores
-          const maxLength = Math.max(scoredAmazon.length, scoredNike.length);
-          for (let i = 0; i < maxLength; i++) {
-            if (scoredAmazon[i]) allProducts.push(scoredAmazon[i]);
-            if (scoredNike[i]) allProducts.push(scoredNike[i]);
-          }
+          loadMoreProducts = remainingAmazonProducts;
         }
         
-        // Remove score from final results and limit to 20 products
-        allProducts = allProducts.slice(0, 20).map(({ score, ...product }) => product);
+        // Limit load more products to reasonable amount
+        loadMoreProducts = loadMoreProducts.slice(0, 20);
+        
+        const error = {
+          amazon: amazonError,
+          nike: nikeError
+        };
+
+        // Save search to user's history if user is logged in
+        try {
+          const authHeader = req.headers.get('authorization');
+          const userIdHeader = req.headers.get('x-user-id');
+          
+          let user = null;
+          
+          if (authHeader && authHeader.startsWith('Bearer ')) {
+            const token = authHeader.substring(7);
+            const JWT_SECRET = process.env.JWT_SECRET;
+            if (!JWT_SECRET) {
+              throw new Error('JWT_SECRET environment variable is required');
+            }
+            
+            try {
+              const decoded = jwt.verify(token, JWT_SECRET);
+              user = global.users.find(u => u.id === decoded.userId);
+            } catch (jwtError) {
+              // Invalid token, continue without saving history
+            }
+          } else if (userIdHeader) {
+            // Fallback: use user ID from header
+            user = global.users.find(u => u.id === userIdHeader);
+          }
+          
+          if (user) {
+            // Add search to user's history
+            const searchEntry = {
+              query: query,
+              timestamp: new Date().toISOString(),
+              resultsCount: allProducts.length
+            };
+            
+            // Initialize searchHistory if it doesn't exist
+            if (!user.searchHistory) {
+              user.searchHistory = [];
+            }
+            
+            // Add to beginning of array (most recent first)
+            user.searchHistory.unshift(searchEntry);
+            
+            // Keep only last 20 searches
+            if (user.searchHistory.length > 20) {
+              user.searchHistory = user.searchHistory.slice(0, 20);
+            }
+          }
+        } catch (historyError) {
+          // Don't fail the search if history saving fails
+        }
 
         return Response.json({
-          products: allProducts,
+          products: initialAmazonProducts,
+          loadMoreProducts: loadMoreProducts,
+          hasMoreProducts: loadMoreProducts.length > 0,
           scraperErrors: error
         });
       } catch (scraperError) {

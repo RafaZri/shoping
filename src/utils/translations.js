@@ -69,6 +69,20 @@ export const translations = {
     brandComparison: "Brand Comparison",
     readMore: "Read More",
     viewAllPosts: "View All Posts",
+    
+    // Auth & Navigation
+    signIn: "Sign in",
+    signUp: "Sign up",
+    viewProfile: "View Profile",
+    newChat: "New Chat",
+    searchHistory: "Search History",
+    savedProducts: "Saved Products",
+    termsOfService: "Terms of Service",
+    privacyPolicy: "Privacy Policy",
+    
+    // Language Switcher
+    switchToFrench: "Switch to French",
+    switchToEnglish: "Switch to English",
   },
   
   fr: {
@@ -141,6 +155,20 @@ export const translations = {
     brandComparison: "Comparaison de Marques",
     readMore: "Lire Plus",
     viewAllPosts: "Voir Tous les Articles",
+    
+    // Auth & Navigation
+    signIn: "Se connecter",
+    signUp: "S'inscrire",
+    viewProfile: "Voir le Profil",
+    newChat: "Nouveau Chat",
+    searchHistory: "Historique de Recherche",
+    savedProducts: "Produits Sauvegardés",
+    termsOfService: "Conditions d'Utilisation",
+    privacyPolicy: "Politique de Confidentialité",
+    
+    // Language Switcher
+    switchToFrench: "Passer au Français",
+    switchToEnglish: "Passer à l'Anglais",
   }
 };
 

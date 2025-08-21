@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://yourdomain.com'
+  const baseUrl = 'https://shoping-comparison.vercel.app'
   
   // Static pages
   const staticPages = [

@@ -1,11 +1,12 @@
 /**
  * scrapeProductsCheerio Function
  * 
- * This function scrapes product data from Amazon based on a search query.
+ * This function scrapes product data from Amazon Canada based on a search query.
  * It uses Cheerio to parse the HTML response and extract product details such as
- * title, price, image, and URL. It limits the results to a maximum of 8 products.
+ * title, price, image, and URL. All Amazon links include Canadian affiliate tracking.
+ * It limits the results to a maximum of 16 products.
  * 
- * @param {string} query - The search query used to find products on Amazon.
+ * @param {string} query - The search query used to find products on Amazon Canada.
  * @returns {Array} - An array of product objects containing details like title, price, image, and URL.
  *                   Returns an empty array if an error occurs during scraping.
  */
@@ -68,12 +69,82 @@ export async function scrapeProductsCheerio(query) {
       // Extract product image URL
       const image = $(el).find('img').attr('src');
 
-      // Construct full product URL for Amazon Canada
-      const url = 'https://amazon.ca' + $(el).find('a.a-link-normal').attr('href');
+      // Construct full product URL for Amazon Canada with affiliate tracking
+      let url = 'https://amazon.ca' + $(el).find('a.a-link-normal').attr('href');
+      
+      // Clean the URL to remove sponsored parameters and get direct product link
+      if (url) {
+        // Extract the product ID and create a clean Amazon URL
+        const urlMatch = url.match(/\/dp\/([A-Z0-9]+)/);
+        if (urlMatch) {
+          const productId = urlMatch[1];
+          // Create super clean Amazon affiliate link for Link Checker
+          url = `https://www.amazon.ca/dp/${productId}?tag=shopcompare0b-20&linkCode=ogi&language=en_CA`;
+        } else {
+          // Try to extract product ID from other URL patterns
+          const otherMatch = url.match(/\/gp\/product\/([A-Z0-9]+)/);
+          if (otherMatch) {
+            const productId = otherMatch[1];
+            url = `https://www.amazon.ca/dp/${productId}?tag=shopcompare0b-20&linkCode=ogi&language=en_CA`;
+          } else {
+            // For sponsored links, try to extract the final product URL
+            const finalUrlMatch = url.match(/url=([^&]+)/);
+            if (finalUrlMatch) {
+              const decodedUrl = decodeURIComponent(finalUrlMatch[1]);
+              const productMatch = decodedUrl.match(/\/dp\/([A-Z0-9]+)/);
+              if (productMatch) {
+                const productId = productMatch[1];
+                url = `https://www.amazon.ca/dp/${productId}?tag=shopcompare0b-20&linkCode=ogi&language=en_CA`;
+              } else {
+                // Last fallback: just add tracking to original URL
+                url += (url.includes('?') ? '&' : '?') + 'tag=shopcompare0b-20';
+              }
+            } else {
+              // Last fallback: just add tracking to original URL
+              url += (url.includes('?') ? '&' : '?') + 'tag=shopcompare0b-20';
+            }
+          }
+        }
+      }
 
-      // Extract real product details
-      const rating = $(el).find('.a-icon-alt').text().match(/(\d+(?:\.\d+)?)/)?.[1];
-      const reviews = $(el).find('.a-size-base.s-underline-text').text().replace(/[^\d]/g, '');
+      // Extract real product details with multiple selector attempts
+      let rating = null;
+      let reviews = null;
+      
+      // Try multiple selectors for rating
+      const ratingSelectors = [
+        '.a-icon-alt',
+        '[data-testid="rating"]',
+        '.a-icon-star-small',
+        '.a-icon-star',
+        '.a-star-rating'
+      ];
+      
+      for (const selector of ratingSelectors) {
+        const ratingText = $(el).find(selector).text();
+        const ratingMatch = ratingText.match(/(\d+(?:\.\d+)?)/);
+        if (ratingMatch) {
+          rating = parseFloat(ratingMatch[1]);
+          break;
+        }
+      }
+      
+      // Try multiple selectors for reviews
+      const reviewSelectors = [
+        '.a-size-base.s-underline-text',
+        '[data-testid="review-count"]',
+        '.a-size-base',
+        '.a-link-normal[href*="reviews"]'
+      ];
+      
+      for (const selector of reviewSelectors) {
+        const reviewText = $(el).find(selector).text();
+        const reviewMatch = reviewText.replace(/[^\d]/g, '');
+        if (reviewMatch && reviewMatch.length > 0) {
+          reviews = parseInt(reviewMatch);
+          break;
+        }
+      }
       
       // Extract product specifications from title or description
       const description = $(el).find('.a-size-base-plus.a-color-base.a-text-normal').text() || 

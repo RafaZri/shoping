@@ -1,18 +1,25 @@
 .searchBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  padding: 1rem;
-  background-color: transparent;
-  box-shadow: none;
-  border: none;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  max-width: 600px;
+  max-width: 400px;
   margin: 0 auto;
+  padding: 1rem;
+  background: none !important;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.input-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar-container {
+  background: none !important;
 }
 
 .searchBar.homePageVariant {
@@ -23,47 +30,53 @@
 
 .input {
   flex: 1;
-  padding: 0.75rem 1rem;
-  border: 2px solid #e9ecef !important;
-  border-radius: 12px;
-  font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  padding-right: 2.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.9rem;
   outline: none;
   background-color: white;
-  z-index: 1001;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .input:focus {
-  border-color: #10b981 !important;
+  border-color: #10b981;
 }
 
 .loading .input {
-  border-color: #e9ecef !important;
+  border-color: #e9ecef;
 }
 
 .input::placeholder {
   color: #9ca3af;
 }
 
-.button {
-  padding: 0.75rem 1.5rem;
-  background-color: #f8f9fa;
-  border: 1px solid #e9ecef;
+.search-icon-button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.4rem;
+  background-color: transparent;
+  border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
+  font-size: 0.8rem;
   transition: all 0.2s ease;
   color: #000000;
-  z-index: 1001;
+  box-shadow: none;
 }
 
 .button:hover {
-  border-color: #10b981 !important;
+  border-color: #10b981;
   background-color: #d1fae5;
   color: #000000;
 }
 
 .button:active {
-  border-color: #059669 !important;
+  border-color: #059669;
   background-color: #a7f3d0;
   color: #000000;
 }
@@ -80,4 +93,33 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .searchBar {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    max-width: 300px; /* Make it narrower for mobile */
+  }
+  
+  .button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Laptop-specific adjustments */
+@media (min-width: 769px) {
+  .searchBar .input {
+    background-color: transparent;
+  }
+  
+  .searchBar .button {
+    background-color: transparent;
+  }
+  
+  .searchBar .button:hover {
+    background-color: transparent;
+  }
 }

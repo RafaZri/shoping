@@ -5,7 +5,6 @@ let users = [];
 
 export const addUser = (user) => {
   users.push(user);
-  console.log('User added:', { id: user.id, email: user.email, firstName: user.firstName });
   return user;
 };
 

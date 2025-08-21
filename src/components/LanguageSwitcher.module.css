@@ -1,37 +1,119 @@
 .languageSwitcher {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 0.5rem;
+  background: rgba(241, 245, 249, 0.98);
+  padding: 0.375rem;
   border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f59e0b;
   backdrop-filter: blur(10px);
 }
 
-.languageButton {
-  padding: 0.25rem 0.5rem;
+.languageIconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.375rem;
   border: none;
   background: transparent;
   color: #6b7280;
   font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   border-radius: 3px;
+  min-width: 1.5rem;
+  min-height: 1.25rem;
+  transform: translateY(0);
 }
 
-.languageButton:hover {
-  background: #f3f4f6;
+.languageIconButton:hover {
+  background: transparent;
   color: #374151;
+  transform: translateY(-2px);
 }
 
-.languageButton.active {
-  background: #111;
+.languageIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.languageA {
+  color: #6b7280;
+  margin-right: 0.125rem;
+}
+
+.languageE {
+  color: #6b7280;
+  margin-left: 0.125rem;
+}
+
+.languageIndicator {
+  font-size: 0.625rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.languageTooltip {
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  background: #1e293b;
   color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-.separator {
-  color: #d1d5db;
-  font-size: 0.75rem;
-  margin: 0 0.25rem;
+.languageTooltip::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  border: 4px solid transparent;
+  border-left-color: #1e293b;
+}
+
+.languageIconButton:hover .languageTooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile adjustments to match other icons */
+@media (max-width: 768px) {
+  .languageSwitcher {
+    padding: 0.375rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .languageIconButton {
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .languageIndicator {
+    font-size: 0.75rem;
+  }
 } 

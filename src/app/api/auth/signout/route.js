@@ -7,7 +7,7 @@ export async function POST() {
       { status: 200 }
     );
 
-    // Clear the auth cookie
+    // Clear the auth cookie by setting it to expire immediately with same settings as signin
     response.cookies.set('auth-token', '', {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
