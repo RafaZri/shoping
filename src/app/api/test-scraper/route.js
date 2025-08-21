@@ -20,8 +20,8 @@
 import { NextResponse } from 'next/server'; // Import Next.js utility for handling server responses
 
 // Import both scrapers with unique names
-import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer'; // Puppeteer-based scraper for Nike
-import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper'; // Cheerio-based scraper for Amazon
+import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer.js'; // Puppeteer-based scraper for Nike
+import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper.js'; // Cheerio-based scraper for Amazon
 
 // GET function: Handles incoming GET requests to this API route
 export async function GET() {

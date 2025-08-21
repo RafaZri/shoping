@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import crypto from 'crypto';
-import { sendPasswordResetEmail } from '../../../utils/emailServiceDev';
+import { sendPasswordResetEmail } from '../../../utils/emailServiceDev.js';
 
 // In-memory user storage (replace with database in production)
 let users = [];

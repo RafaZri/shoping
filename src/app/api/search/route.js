@@ -1,5 +1,5 @@
-import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper';
-import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer';
+import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper.js';
+import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer.js';
 import jwt from 'jsonwebtoken';
 
 // Basic rate limiting

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer';
+import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer.js';
 
 export async function POST(req) {
   try {
