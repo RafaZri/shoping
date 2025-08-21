@@ -2,6 +2,9 @@ import { scrapeProductsCheerio } from '../../../utils/scrapers/scraper.js';
 import { scrapeProductsPuppeteer } from '../../../utils/scrapers/scraperPuppeteer.js';
 import jwt from 'jsonwebtoken';
 
+// Add debugging for production
+console.log('🔍 Search API loaded - Environment:', process.env.NODE_ENV);
+
 // Basic rate limiting
 const rateLimitStore = new Map();
 
