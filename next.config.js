@@ -4,6 +4,9 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   
+  // Fix lockfile warning
+  outputFileTracingRoot: process.cwd(),
+  
   // Image optimization
   images: {
     domains: [
