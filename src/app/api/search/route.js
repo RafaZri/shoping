@@ -246,10 +246,14 @@ export async function POST(req) {
         let amazonError = null;
         
         try {
+          console.log('🔍 Calling scrapeProductsCheerio with query:', query);
           amazonResults = await scrapeProductsCheerio(query);
           console.log('✅ Amazon search completed, found:', amazonResults?.length || 0, 'products');
+          console.log('🔍 Amazon results type:', typeof amazonResults);
+          console.log('🔍 Amazon results:', amazonResults);
         } catch (error) {
           console.error('❌ Amazon search failed:', error);
+          console.error('❌ Error stack:', error.stack);
           amazonError = error.message;
           amazonResults = [];
         }
@@ -330,7 +334,7 @@ export async function POST(req) {
             const searchEntry = {
               query: query,
               timestamp: new Date().toISOString(),
-              resultsCount: allProducts.length
+              resultsCount: initialAmazonProducts.length
             };
             
             // Initialize searchHistory if it doesn't exist
