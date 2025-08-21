@@ -240,10 +240,21 @@ export async function POST(req) {
         // Process the query
         const queryInfo = processQuery(query);
         
-        // Ultra-fast loading: Start with Amazon first, Nike in background
-        const amazonResults = await scrapeProductsCheerio(query);
+        // Ultra-fast loading: Start with Amazon first
+        console.log('🔍 Starting Amazon search for:', query);
+        let amazonResults;
+        let amazonError = null;
+        
+        try {
+          amazonResults = await scrapeProductsCheerio(query);
+          console.log('✅ Amazon search completed, found:', amazonResults?.length || 0, 'products');
+        } catch (error) {
+          console.error('❌ Amazon search failed:', error);
+          amazonError = error.message;
+          amazonResults = [];
+        }
+        
         const amazon = amazonResults || [];
-        const amazonError = null;
         
         // Quick scoring for immediate display
         const scoredAmazon = amazon.map(product => ({
@@ -254,15 +265,9 @@ export async function POST(req) {
         // Get first 8 Amazon products for ultra-fast display
         const initialAmazonProducts = scoredAmazon.slice(0, 8).map(({ score, ...product }) => product);
         
-        // Run Nike scraper in background (non-blocking)
-        const nikePromise = scrapeProductsPuppeteer(query).catch(err => {
-          console.error('Nike scraper error:', err);
-          return [];
-        });
-        
-        // Return Amazon results immediately, Nike will be processed later
+        // For now, skip Nike scraper in production (Puppeteer doesn't work in serverless)
         const nike = [];
-        const nikeError = null;
+        const nikeError = 'Nike scraper disabled in production';
         const scoredNike = [];
         
         // Determine if Nike products are relevant for this search
