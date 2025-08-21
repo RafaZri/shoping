@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import SearchBar from "../components/SearchBar";
 import HomePage from "../components/HomePage";
@@ -15,7 +15,7 @@ import { getTranslation } from "../utils/translations";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import Link from 'next/link';
 
-export default function Page() {
+function PageContent() {
   const { 
     showHomePage, 
     messages, 
@@ -373,5 +373,13 @@ export default function Page() {
         </>
       )}
     </main>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent />
+    </Suspense>
   );
 }
