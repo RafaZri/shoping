@@ -163,6 +163,9 @@ function scoreProduct(product, queryInfo) {
 
 export async function POST(req) {
   try {
+    // Add a simple test log to verify the API is being called
+    console.log('🚀 Search API called at:', new Date().toISOString());
+    
     // Get client IP for rate limiting
     const clientIP = getClientIP(req);
     
